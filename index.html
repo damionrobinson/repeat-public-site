@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Repeit · Talk instead of type</title>
+<meta name="description" content="Talk instead of type, in any app. Fix what you wrote. Your words, not AI's. Runs on your own laptop.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta property="og:title" content="Repeit · Yes, we spelled it wrong. Watch us fix it.">
+<meta property="og:description" content="Talk instead of type. Fix what you wrote. Your words, not AI's.">
+<meta property="og:image" content="https://repeit.com/assets/og-1200x630.png">
+<meta property="og:url" content="https://repeit.com/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://repeit.com/assets/og-1200x630.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Tokens: docs/designs/09-developer-handover.md §2. Coral is for the squiggle only. */
+  :root {
+    --bg: #F6F5F1; --surface: #FFFFFF; --line: #E4E2DC; --ink: #1B1D22; --on-ink: #FFFFFF;
+    --muted: #565B66; --soft: #EAE7DF; --catch: #D9432F; --warn-soft: #FFF1DB; --warn-ink: #6B4100;
+    --removed-bg: #EFEDE8; --removed-ink: #5E636E;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141519; --surface: #1C1E24; --line: #33363E; --ink: #F2F2F4; --on-ink: #17181C;
+      --muted: #A9AEB8; --soft: #2A2C33; --catch: #FF7A63; --warn-soft: #372A12; --warn-ink: #FBD38D;
+      --removed-bg: #2A2C33; --removed-ink: #9A9FA9;
+    }
+    .only-light { display: none !important; }
+  }
+  @media (prefers-color-scheme: light) { .only-dark { display: none !important; } }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 18px/1.6 "Atkinson Hyperlegible", system-ui, sans-serif;
+  }
+  a { color: var(--ink); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+  header .wrap { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  header img { height: 30px; width: auto; display: block; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+    padding: 0 22px; border-radius: 10px; border: 1px solid var(--ink);
+    background: var(--ink); color: var(--on-ink); font: inherit; font-weight: 700;
+    text-decoration: none; cursor: pointer;
+  }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn:focus-visible, input:focus-visible, select:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+
+  .hero { padding: 56px 20px 40px; text-align: center; }
+  .hero .mark { width: min(100%, 620px); height: auto; aspect-ratio: 4180 / 990; display: block; margin: 0 auto 36px; }
+  .hero h1 { font-size: clamp(30px, 5vw, 48px); line-height: 1.15; margin: 0 auto 16px; max-width: 18ch; }
+  .hero p.lede { font-size: 20px; color: var(--muted); max-width: 34ch; margin: 0 auto 28px; }
+  .say { margin-top: 14px; font-size: 15px; color: var(--muted); }
+
+  section { padding: 48px 0; border-top: 1px solid var(--line); }
+  h2 { font-size: 28px; line-height: 1.2; margin: 0 0 24px; }
+  .grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+  .card { background: var(--surface); border: 1px solid var(--line); border-radius: 14px; padding: 22px; }
+  .card h3 { margin: 0 0 6px; font-size: 19px; }
+  .card p { margin: 0; color: var(--muted); font-size: 16px; }
+
+  /* The meaning-guard demo: shape carries the meaning, colour backs it up. */
+  .demo { display: grid; gap: 10px; font-size: 17px; }
+  .demo .rowx { display: flex; gap: 12px; align-items: baseline; flex-wrap: wrap; }
+  .demo .tag { font-size: 13px; color: var(--muted); min-width: 64px; }
+  .demo s { background: var(--removed-bg); color: var(--removed-ink); padding: 0 3px; border-radius: 4px; }
+  .held { background: var(--warn-soft); color: var(--warn-ink); border-radius: 12px; padding: 14px 16px; font-size: 16px; }
+  .caught { text-decoration: underline wavy var(--catch); text-decoration-thickness: 1.6px; text-underline-offset: 4px; }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
+  .chip { background: var(--soft); border-radius: 999px; padding: 4px 12px; font-size: 14px; }
+
+  form { display: grid; gap: 14px; max-width: 520px; }
+  label { font-weight: 700; font-size: 16px; }
+  input[type=email], select {
+    width: 100%; min-height: 44px; padding: 8px 12px; border-radius: 8px;
+    border: 1px solid var(--line); background: var(--surface); color: var(--ink); font: inherit;
+  }
+  .check { display: flex; gap: 10px; align-items: flex-start; font-weight: 400; }
+  .check input { width: 20px; height: 20px; margin-top: 4px; accent-color: var(--ink); }
+  .note { font-size: 14px; color: var(--muted); margin: 0; }
+  #thanks { display: none; }
+
+  footer { padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+
+  @media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="/" aria-label="Repeit home">
+      <img class="only-light" src="assets/wordmark-ink.svg" alt="Repeit">
+      <img class="only-dark" src="assets/wordmark-paper.svg" alt="Repeit">
+    </a>
+    <a class="btn ghost" href="#join">Join the beta</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero wrap">
+    <!-- Plays once on load; shows the end frame under Reduce Motion. -->
+    <img class="mark only-light" src="assets/hero-animated-ink.svg" alt="Repeit corrects itself to Repeat">
+    <img class="mark only-dark" src="assets/hero-animated-paper.svg" alt="Repeit corrects itself to Repeat">
+    <!-- Headline test: version A (students) by default, version B (developers) at ?v=b. -->
+    <h1 id="headline">Yes, we spelled it wrong. Watch us fix it.</h1>
+    <p class="lede" id="lede">Talk instead of type. Fix what you wrote. Your words, not AI's.</p>
+    <a class="btn" href="#join">Join the beta</a>
+    <p class="say">Say repeat. Spell it repe-i-t.</p>
+  </div>
+
+  <section>
+    <div class="wrap">
+      <h2>On your laptop, in any app</h2>
+      <div class="grid">
+        <div class="card">
+          <h3>Talk instead of type</h3>
+          <p>Hold a key, speak, let go. Your words appear wherever you're typing, with the ums and "scratch that" taken out.</p>
+        </div>
+        <div class="card">
+          <h3>Fix what you wrote</h3>
+          <p>Select your text and press one key for a proofread. Say "shorter" or "more formal" to rewrite an email or a message.</p>
+        </div>
+        <div class="card">
+          <h3>See every change</h3>
+          <p>History shows each edit word by word, so you always know what changed and why.</p>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="chip">Runs on your own laptop</span>
+        <span class="chip">Works offline after setup</span>
+        <span class="chip">No account to dictate</span>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>It won't change what you meant</h2>
+      <div class="card demo">
+        <div class="rowx"><span class="tag">You wrote</span><span>I did not agree to the <span class="caught">extention</span>.</span></div>
+        <div class="rowx"><span class="tag">AI tried</span><span>I <s>did not agree</s> agreed to the extension.</span></div>
+        <div class="held">We didn't change this. That edit would have removed <strong>"not"</strong> and flipped what you meant. Your text is exactly as you wrote it.</div>
+      </div>
+      <p class="note" style="margin-top:14px">The meaning guard holds back edits that drop a "not", change a number or remove a name, and tells you why.</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2>Your words, not AI's</h2>
+      <p style="max-width:60ch;margin:0 0 12px">Dictation is your own words, spoken instead of typed. Proofreading fixes spelling, grammar and punctuation with the smallest changes it can, and shows you every one.</p>
+      <p style="max-width:60ch;margin:0;color:var(--muted)">Rewrite is for emails, messages and your own notes. For assessed work, check your course's AI policy first.</p>
+    </div>
+  </section>
+
+  <section id="join">
+    <div class="wrap">
+      <h2>Join the beta</h2>
+      <form id="beta" novalidate>
+        <div>
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required>
+        </div>
+        <div>
+          <label for="writes">What do you mostly write? (optional)</label>
+          <select id="writes" name="writes">
+            <option value="">Choose one</option>
+            <option>Student work</option>
+            <option>Code and prompts</option>
+            <option>I write a lot for work</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <label class="check"><input type="checkbox" name="hard" value="yes"> I find spelling or typing hard (optional)</label>
+        <div><button class="btn" type="submit">Join the beta</button></div>
+        <p class="note">Mac first. We only use your email to send you the beta.</p>
+      </form>
+      <p id="thanks" role="status">Thanks. You're on the list.</p>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Repeit. The app itself is spelled right: Repeat.</span>
+    <span>Made for people who think faster than they type.</span>
+  </div>
+</footer>
+
+<script>
+  // Headline test. Version B (developers) at ?v=b; everything below the hero is identical.
+  (function () {
+    var v = new URLSearchParams(location.search).get('v');
+    if (v === 'b') {
+      document.getElementById('headline').textContent = 'Dictate prompts in any app. Local, offline, no account.';
+      document.getElementById('lede').textContent = 'Hold a key, talk, let go. It types into Claude Code, your editor or the terminal, on your own Mac.';
+    }
+    document.documentElement.dataset.variant = v === 'b' ? 'b' : 'a';
+  })();
+
+  // The sign-up form needs an endpoint before launch (FORM_ENDPOINT). Until then it
+  // only confirms on the page and sends nothing anywhere.
+  var FORM_ENDPOINT = '';
+  document.getElementById('beta').addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('email');
+    if (!email.checkValidity()) { email.focus(); email.reportValidity(); return; }
+    var data = new FormData(e.target);
+    data.append('variant', document.documentElement.dataset.variant);
+    var done = function () {
+      e.target.style.display = 'none';
+      document.getElementById('thanks').style.display = 'block';
+    };
+    if (!FORM_ENDPOINT) { done(); return; }
+    fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } }).then(done, done);
+  });
+</script>
+</body>
+</html>
