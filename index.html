@@ -210,9 +210,9 @@
     document.documentElement.dataset.variant = v === 'b' ? 'b' : 'a';
   })();
 
-  // The sign-up form needs an endpoint before launch (FORM_ENDPOINT). Until then it
-  // only confirms on the page and sends nothing anywhere.
-  var FORM_ENDPOINT = '';
+  // Sign-ups go to Formspree (form "repeit.com beta sign-up"), which emails each one
+  // to the founder. Formspree sends the person nothing; the beta goes out by hand.
+  var FORM_ENDPOINT = 'https://formspree.io/f/mzeenoke';
   document.getElementById('beta').addEventListener('submit', function (e) {
     e.preventDefault();
     var email = document.getElementById('email');
@@ -224,7 +224,17 @@
       document.getElementById('thanks').style.display = 'block';
     };
     if (!FORM_ENDPOINT) { done(); return; }
-    fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } }).then(done, done);
+    var button = e.target.querySelector('button[type=submit]');
+    var failed = function () {
+      button.disabled = false;
+      button.textContent = 'Join the beta';
+      alert('Sorry, that didn\u2019t go through. Please try again in a moment.');
+    };
+    button.disabled = true;
+    button.textContent = 'Sending\u2026';
+    // Only say thanks once Formspree has the address, so a failed sign-up isn't lost silently.
+    fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+      .then(function (r) { if (r.ok) done(); else failed(); }, failed);
   });
 </script>
 </body>
