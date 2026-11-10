@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Your licence key &middot; Repeit</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Tokens shared with index.html (docs/designs/09-developer-handover.md §2); kept in sync by hand until there's a build step. */
+  :root {
+    --bg: #F6F5F1; --surface: #FFFFFF; --line: #E4E2DC; --ink: #1B1D22; --on-ink: #FFFFFF;
+    --muted: #565B66;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141519; --surface: #1C1E24; --line: #33363E; --ink: #F2F2F4; --on-ink: #17181C;
+      --muted: #A9AEB8;
+    }
+    .only-light { display: none !important; }
+  }
+  @media (prefers-color-scheme: light) { .only-dark { display: none !important; } }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 18px/1.6 "Atkinson Hyperlegible", system-ui, sans-serif;
+  }
+  a { color: var(--ink); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+  header .wrap { display: flex; align-items: center; height: 72px; }
+  header img { height: 30px; width: auto; display: block; }
+  main { padding: 40px 0 64px; }
+  h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.2; margin: 0 0 8px; }
+  .card {
+    max-width: 560px; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 28px;
+  }
+  .key {
+    font: 700 20px/1.4 ui-monospace, SFMono-Regular, Menlo, monospace; overflow-wrap: anywhere;
+    padding: 14px 16px; border: 1px solid var(--line); border-radius: 10px; margin: 12px 0;
+  }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+    padding: 0 22px; border-radius: 10px; border: 1px solid var(--ink);
+    background: var(--ink); color: var(--on-ink); font: inherit; font-weight: 700; cursor: pointer;
+  }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .muted { color: var(--muted); }
+  [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="/" aria-label="Repeit home">
+      <img class="only-light" src="assets/wordmark-ink.svg" alt="Repeit">
+      <img class="only-dark" src="assets/wordmark-paper.svg" alt="Repeit">
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>Thanks. You're all set.</h1>
+    <section class="card" aria-live="polite">
+      <p id="waiting">Getting your licence key ready…</p>
+      <div id="ready" hidden>
+        <p>Your licence key:</p>
+        <div class="key" id="key"></div>
+        <button class="btn" id="copy" type="button">Copy key</button>
+        <p>Paste it into Repeat's settings to activate it. It works on up to 3 devices.</p>
+      </div>
+      <p class="muted" id="later" hidden>This is taking longer than usual. Your key is also on its way by email. If it hasn't arrived within the hour, reply to your Paddle receipt and we'll sort it out.</p>
+      <p class="muted">We've also emailed the key to you. Keep the email: it's your proof of purchase if you ever need to move the key to a new device.</p>
+    </section>
+  </div>
+</main>
+
+<script src="assets/checkout-config.js"></script>
+<script>
+  (function () {
+    var cfg = window.REPEAT_CHECKOUT || {};
+    var txn = new URLSearchParams(location.search).get('transaction_id');
+    var waiting = document.getElementById('waiting');
+    var later = document.getElementById('later');
+
+    // The webhook mints the key a few seconds after payment, so poll for a minute
+    // (202 = not yet), then fall back to the email.
+    if (!txn || !cfg.LICENCE_SERVER_URL) { waiting.hidden = true; later.hidden = false; return; }
+    var tries = 0;
+    function poll() {
+      fetch(cfg.LICENCE_SERVER_URL + 'purchase?transaction_id=' + encodeURIComponent(txn))
+        .then(function (r) { return r.status === 200 ? r.json() : null; })
+        .then(function (body) {
+          if (body && body.licence_key) {
+            document.getElementById('key').textContent = body.licence_key;
+            waiting.hidden = true;
+            document.getElementById('ready').hidden = false;
+          } else { retry(); }
+        }, retry);
+    }
+    function retry() {
+      if (++tries >= 20) { waiting.hidden = true; later.hidden = false; return; }
+      setTimeout(poll, 3000);
+    }
+    document.getElementById('copy').addEventListener('click', function () {
+      var text = document.getElementById('key').textContent;
+      if (navigator.clipboard) navigator.clipboard.writeText(text).then(function () {
+        document.getElementById('copy').textContent = 'Copied';
+      });
+    });
+    poll();
+  })();
+</script>
+</body>
+</html>

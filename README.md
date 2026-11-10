@@ -4,6 +4,7 @@ A one-page static site: `index.html` plus `assets/` copied from the brand site k
 
 - **Headline test:** version A (students) is the default. Version B (developers) is at `?v=b`. Everything below the hero is identical. The sign-up form sends the version with each entry.
 - **Sign-up form:** not connected yet. `FORM_ENDPOINT` in `index.html` is empty, so the form only shows "Thanks" and sends nothing. Pick a free form backend before launch.
+- **Checkout:** `buy.html` opens a Paddle overlay checkout for the one-time licence price. On `checkout.completed` it sends the buyer to `thanks.html?transaction_id=…`, which polls the licence server's `GET /purchase` for the key that the webhook mints (the emailed key is the main copy). All settings live in `assets/checkout-config.js`: environment, client token, price ID and licence-server URL. Swap all four together when going live. While any is empty, the page says "Not on sale yet". `buy.html` isn't linked from the home page yet, because the home page is still the beta sign-up page. Paddle.js (cdn.paddle.com) loads only on `buy.html`.
 - **Brand rules:** "Repeit" only in the brand. Coral is used only for the squiggle. Light and dark follow the system setting.
 
 ## Hosting (free)

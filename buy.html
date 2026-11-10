@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buy a licence &middot; Repeit</title>
+<meta name="description" content="One licence key, up to 3 Macs, for a year. Dictation stays free forever.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Tokens shared with index.html (docs/designs/09-developer-handover.md §2); kept in sync by hand until there's a build step. */
+  :root {
+    --bg: #F6F5F1; --surface: #FFFFFF; --line: #E4E2DC; --ink: #1B1D22; --on-ink: #FFFFFF;
+    --muted: #565B66;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141519; --surface: #1C1E24; --line: #33363E; --ink: #F2F2F4; --on-ink: #17181C;
+      --muted: #A9AEB8;
+    }
+    .only-light { display: none !important; }
+  }
+  @media (prefers-color-scheme: light) { .only-dark { display: none !important; } }
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 18px/1.6 "Atkinson Hyperlegible", system-ui, sans-serif;
+  }
+  a { color: var(--ink); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+  header .wrap { display: flex; align-items: center; height: 72px; }
+  header img { height: 30px; width: auto; display: block; }
+  main { padding: 40px 0 64px; }
+  h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.2; margin: 0 0 8px; }
+  .lede { color: var(--muted); margin: 0 0 32px; max-width: 46ch; }
+  .card {
+    max-width: 520px; background: var(--surface); border: 1px solid var(--line);
+    border-radius: 16px; padding: 28px;
+  }
+  .card h2 { margin: 0 0 4px; font-size: 22px; }
+  .price { font-size: 34px; font-weight: 700; margin: 8px 0 0; }
+  .price-note { color: var(--muted); font-size: 15px; margin: 0 0 20px; }
+  ul { padding-left: 20px; margin: 0 0 24px; }
+  li { margin-bottom: 6px; }
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
+    padding: 0 22px; border-radius: 10px; border: 1px solid var(--ink);
+    background: var(--ink); color: var(--on-ink); font: inherit; font-weight: 700;
+    text-decoration: none; cursor: pointer; width: 100%;
+  }
+  .btn[disabled] { opacity: .5; cursor: not-allowed; }
+  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+  .small { font-size: 15px; color: var(--muted); margin: 16px 0 0; }
+  footer { padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  footer a { margin-right: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="/" aria-label="Repeit home">
+      <img class="only-light" src="assets/wordmark-ink.svg" alt="Repeit">
+      <img class="only-dark" src="assets/wordmark-paper.svg" alt="Repeit">
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+    <h1>One key. Three Macs. A whole year.</h1>
+    <p class="lede">Dictation and file transcription stay free forever. A licence unlocks the writing help once your 30-day trial ends.</p>
+
+    <section class="card" aria-labelledby="plan">
+      <h2 id="plan">Repeat licence</h2>
+      <p class="price">£39 · €45 · $49</p>
+      <p class="price-note">For one year. UK and EU prices include VAT. Checkout shows your local price and any tax before you pay.</p>
+      <ul>
+        <li>Proofread, rewrite and voice edits</li>
+        <li>Meetings, the local MCP server and your stats</li>
+        <li>Use it on up to 3 devices</li>
+        <li>No account. You get a key, and that's all we keep.</li>
+      </ul>
+      <button class="btn" id="buy" type="button" disabled>Buy a licence</button>
+      <p class="small" id="status" role="status">Loading checkout…</p>
+      <p class="small">Payment is handled by Paddle, our reseller. Paddle asks for your email to send the receipt and your key. 14-day refund, no questions asked. After a year, everything you already have keeps working; renew to keep getting updates and the writing help.</p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a href="/">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a>
+  </div>
+</footer>
+
+<script src="assets/checkout-config.js"></script>
+<script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
+<script>
+  (function () {
+    var cfg = window.REPEAT_CHECKOUT || {};
+    var button = document.getElementById('buy');
+    var status = document.getElementById('status');
+
+    if (!cfg.PADDLE_CLIENT_TOKEN || !cfg.LICENCE_PRICE_ID || !window.Paddle) {
+      status.textContent = 'Not on sale yet. Join the beta on the home page and we’ll tell you when it is.';
+      return;
+    }
+
+    if (cfg.PADDLE_ENV === 'sandbox') Paddle.Environment.set('sandbox');
+    Paddle.Initialize({
+      token: cfg.PADDLE_CLIENT_TOKEN,
+      eventCallback: function (event) {
+        // The key itself comes from the licence server's webhook, never from
+        // this page. Here we only send the buyer somewhere that can show it.
+        if (event.name === 'checkout.completed' && event.data && event.data.transaction_id) {
+          Paddle.Checkout.close();
+          location.href = 'thanks.html?transaction_id=' + encodeURIComponent(event.data.transaction_id);
+        }
+        if (event.name === 'checkout.error') {
+          status.textContent = 'Checkout couldn’t open. Try again in a moment.';
+        }
+      }
+    });
+
+    button.disabled = false;
+    status.textContent = '';
+    button.addEventListener('click', function () {
+      Paddle.Checkout.open({
+        items: [{ priceId: cfg.LICENCE_PRICE_ID, quantity: 1 }],
+        settings: { variant: 'one-page' }
+      });
+    });
+  })();
+</script>
+</body>
+</html>
