@@ -186,7 +186,13 @@
         <div><button class="btn" type="submit">Join the beta</button></div>
         <p class="note">Mac first. We only use your email to send you the beta. Read our <a href="privacy.html">privacy notice</a>.</p>
       </form>
-      <p id="thanks" role="status">Thanks. You're on the list.</p>
+      <div id="thanks" role="status">
+        <p>Thanks. You're on the list.</p>
+        <p id="download-block">
+          <a id="download-link" class="btn" href="#">Download for Mac</a>
+          <a href="install.html">How to open it (it's not signed yet)</a>
+        </p>
+      </div>
     </div>
   </section>
 </main>
@@ -211,24 +217,19 @@
   })();
 
   // Sign-ups go to Formspree (form "repeit.com beta sign-up"), which emails each one
-  // to the founder — the system of record for "did someone sign up." Separately,
-  // repeat-server gets a fire-and-forget beacon so it can email the person a
-  // download link once a signed build exists (REPEAT_SERVER_DOWNLOAD_URL unset
-  // until then, so this is a silent no-op today — see crates/server/src/main.rs
-  // handle_signup). `mode: 'no-cors'` because the page never reads the response
-  // or depends on it; Formspree's own fetch below is the one that gates "Thanks".
+  // to the founder — the system of record for "did someone sign up." No
+  // server-side signup beacon any more (11 Nov: founder decided to ship an
+  // unsigned beta via GitHub Releases instead of waiting on the Apple
+  // Developer Program, dropping the repeat-server/download-link-email
+  // plan entirely) — the download is right here on success instead.
   //
-  // SIGNUP_BEACON is a placeholder: repeat-server isn't deployed anywhere
-  // reachable yet (repeit.com itself is GitHub Pages, which can't run it —
-  // confirmed 11 Nov, not hypothetical). Fill in the real address once
-  // it's actually running somewhere (licence.repeit.com gaining a /signup
-  // route alongside the licence server, on the same already-provisioned
-  // droplet, needs no new DNS — the likely fastest path; a dedicated
-  // subdomain is the other option but needs the founder to add a DNS
-  // record first). Empty means this beacon is skipped entirely, same "do
-  // nothing until configured" pattern as checkout-config.js.
+  // DOWNLOAD_URL is a placeholder until the founder actually publishes the
+  // GitHub Release (crates/app/package-beta.sh builds the artifact).
+  // Empty means the download block stays hidden and the page just says
+  // thanks, same "do nothing until configured" pattern as
+  // checkout-config.js.
   var FORM_ENDPOINT = 'https://formspree.io/f/mzeenoke';
-  var SIGNUP_BEACON = '';
+  var DOWNLOAD_URL = '';
   document.getElementById('beta').addEventListener('submit', function (e) {
     e.preventDefault();
     var email = document.getElementById('email');
@@ -237,14 +238,13 @@
     data.append('variant', document.documentElement.dataset.variant);
     var done = function () {
       e.target.style.display = 'none';
+      if (DOWNLOAD_URL) {
+        document.getElementById('download-link').href = DOWNLOAD_URL;
+      } else {
+        document.getElementById('download-block').style.display = 'none';
+      }
       document.getElementById('thanks').style.display = 'block';
     };
-    if (SIGNUP_BEACON) {
-      // POST, not a query string: the email must never land in an access
-      // log. URLSearchParams as the body keeps this CORS-simple (no
-      // preflight), same as the query-string version was.
-      fetch(SIGNUP_BEACON, { method: 'POST', mode: 'no-cors', body: new URLSearchParams({ email: email.value }) }).catch(function () {});
-    }
     if (!FORM_ENDPOINT) { done(); return; }
     var button = e.target.querySelector('button[type=submit]');
     var failed = function () {
