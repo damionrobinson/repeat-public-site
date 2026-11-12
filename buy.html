@@ -39,6 +39,7 @@
   main { padding: 40px 0 64px; }
   h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.2; margin: 0 0 8px; }
   .lede { color: var(--muted); margin: 0 0 32px; max-width: 46ch; }
+  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
   .card {
     max-width: 520px; background: var(--surface); border: 1px solid var(--line);
     border-radius: 16px; padding: 28px;
@@ -54,6 +55,7 @@
     background: var(--ink); color: var(--on-ink); font: inherit; font-weight: 700;
     text-decoration: none; cursor: pointer; width: 100%;
   }
+  .btn.alt { background: var(--surface); color: var(--ink); }
   .btn[disabled] { opacity: .5; cursor: not-allowed; }
   .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
   .small { font-size: 15px; color: var(--muted); margin: 16px 0 0; }
@@ -73,29 +75,45 @@
 
 <main>
   <div class="wrap">
-    <h1>One key. Three Macs. A whole year.</h1>
+    <h1>One key. Three devices. Pay yearly, or once.</h1>
     <p class="lede">Dictation and file transcription stay free forever. A licence unlocks the writing help once your 30-day trial ends.</p>
 
-    <section class="card" aria-labelledby="plan">
-      <h2 id="plan">Repeat licence</h2>
-      <p class="price">£39 · €45 · $49</p>
-      <p class="price-note">For one year. UK and EU prices include VAT. Checkout shows your local price and any tax before you pay.</p>
-      <ul>
-        <li>Proofread, rewrite and voice edits</li>
-        <li>Meetings, the local MCP server and your stats</li>
-        <li>Use it on up to 3 devices</li>
-        <li>No account. You get a key, and that's all we keep.</li>
-      </ul>
-      <button class="btn" id="buy" type="button" disabled>Buy a licence</button>
-      <p class="small" id="status" role="status">Loading checkout…</p>
-      <p class="small">Payment is handled by Paddle, our reseller. Paddle asks for your email to send the receipt and your key. 14-day refund, no questions asked. After a year, everything you already have keeps working; renew to keep getting updates and the writing help.</p>
-    </section>
+    <div class="plans">
+      <section class="card" aria-labelledby="plan">
+        <h2 id="plan">Yearly licence</h2>
+        <p class="price">£39 · €45 · $49</p>
+        <p class="price-note">For one year. After a year, everything you already have keeps working; renew to keep getting updates and the writing help.</p>
+        <ul>
+          <li>Proofread, rewrite and voice edits</li>
+          <li>Meetings, the local MCP server and your stats</li>
+          <li>Use it on up to 3 devices</li>
+          <li>No account. You get a key, and that's all we keep.</li>
+        </ul>
+        <button class="btn" id="buy" type="button" disabled>Buy yearly</button>
+      </section>
+
+      <section class="card" aria-labelledby="plan-life">
+        <h2 id="plan-life">Lifetime licence</h2>
+        <p class="price">£99 · €115 · $129</p>
+        <p class="price-note">Pay once. Never expires, and includes every update.</p>
+        <ul>
+          <li>Everything in the yearly licence</li>
+          <li>Use it on up to 3 devices</li>
+          <li>No renewals, ever</li>
+          <li>No account. You get a key, and that's all we keep.</li>
+        </ul>
+        <button class="btn alt" id="buy-lifetime" type="button" disabled>Buy lifetime</button>
+      </section>
+    </div>
+
+    <p class="small" id="status" role="status">Loading checkout…</p>
+    <p class="small">UK and EU prices include VAT. Checkout shows your local price and any tax before you pay. Payment is handled by Paddle, our reseller. Paddle asks for your email to send the receipt and your key. 14-day refund, no questions asked.</p>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <a href="/">Home</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a>
+    <a href="/">Home</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a>
   </div>
 </footer>
 
@@ -105,6 +123,7 @@
   (function () {
     var cfg = window.REPEAT_CHECKOUT || {};
     var button = document.getElementById('buy');
+    var lifetime = document.getElementById('buy-lifetime');
     var status = document.getElementById('status');
 
     if (!cfg.PADDLE_CLIENT_TOKEN || !cfg.LICENCE_PRICE_ID || !window.Paddle) {
@@ -129,14 +148,19 @@
       }
     });
 
-    button.disabled = false;
-    status.textContent = '';
-    button.addEventListener('click', function () {
+    var open = function (priceId) {
       Paddle.Checkout.open({
-        items: [{ priceId: cfg.LICENCE_PRICE_ID, quantity: 1 }],
+        items: [{ priceId: priceId, quantity: 1 }],
         settings: { variant: 'one-page' }
       });
-    });
+    };
+    button.disabled = false;
+    status.textContent = '';
+    button.addEventListener('click', function () { open(cfg.LICENCE_PRICE_ID); });
+    if (cfg.LIFETIME_PRICE_ID) {
+      lifetime.disabled = false;
+      lifetime.addEventListener('click', function () { open(cfg.LIFETIME_PRICE_ID); });
+    }
   })();
 </script>
 <script src="assets/consent.js"></script>

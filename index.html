@@ -17,7 +17,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/play/play.css">
+<link rel="stylesheet" href="assets/play/play.css?v=4">
 </head>
 <body>
 
@@ -26,11 +26,13 @@
     <img class="on-light" src="assets/wordmark-ink.svg" alt="Repeit">
     <img class="on-dark" src="assets/wordmark-paper.svg" alt="Repeit">
   </a>
-  <nav class="links mono" aria-label="Sections">
+  <nav class="links mono" id="site-menu" aria-label="Sections">
+    <a href="about.html">About</a>
     <a href="#talk" data-goto="0">How it works</a>
     <a href="#hunt" id="hunt-link">Typo hunt</a>
     <a href="#pricing" data-goto="4">Pricing</a>
     <a href="install.html">Install help</a>
+    <a class="menu-only" href="#beta">Get the beta</a>
   </nav>
   <span class="spacer"></span>
   <button class="counter" id="counter" type="button" aria-live="polite" title="Find and fix the typos on this page">
@@ -39,6 +41,7 @@
   </button>
   <button class="theme" id="theme" type="button" aria-label="Switch light or dark">☾</button>
   <a class="btn small" href="#beta">Get the beta</a>
+  <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
 <aside class="sidetab" id="sidetab">
@@ -191,7 +194,7 @@
 <footer>
   <span class="made">Made with <span class="typo hunt" data-fix="typos" tabindex="0" role="button" aria-label="Fix the typo: typso"><span class="w" aria-hidden="true">typso</span></span>, fixed with Repeat. The app itself is spelled right.</span>
   <span class="company">© 2026 Design Definition Limited · Company 15183622, registered in England and Wales · 27 Old Gloucester Street, London WC1N 3AX</span>
-  <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a><a href="install.html">Install help</a><a href="mailto:support@repeit.com">support@repeit.com</a></nav>
+  <nav><a href="about.html">About</a><a href="changelog.html">Changelog</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a><a href="install.html">Install help</a><a href="mailto:support@repeit.com">support@repeit.com</a></nav>
 </footer>
 
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
@@ -201,5 +204,6 @@
 <script src="assets/vendor/gsap-3.13.0/SplitText.min.js"></script>
 <script src="assets/consent.js"></script>
 <script src="assets/play/play.js"></script>
+<script src="assets/play/menu.js"></script>
 </body>
 </html>

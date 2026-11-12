@@ -1,0 +1,90 @@
+/* About and Changelog pages (Figma: "Website — About page", frame "About · Desktop").
+   Sits on top of play.css, so tokens, buttons, nav, typos and footer match the home page. */
+.page { max-width: 1200px; margin: 0 auto; padding: 0 32px; }
+.sec { padding: 96px 0; border-top: 1px solid var(--line); }
+.sec:first-child { border-top: 0; }
+.sec-bar { display: flex; align-items: center; gap: 16px; padding: 14px 0; margin-bottom: 48px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.sec-bar .right { margin-left: auto; color: var(--muted); }
+.sec-bar b { font-weight: 700; }
+.big { font: 800 clamp(44px, 6vw, 84px)/1.0 var(--display); letter-spacing: -.025em; margin: 0; }
+.big .typo { display: inline; white-space: normal; }
+.big .typo .w { text-decoration-thickness: .05em; text-underline-offset: .12em; }
+.lead { color: var(--muted); font-size: 19px; max-width: 60ch; margin: 18px 0 0; }
+
+/* Hero */
+.about-hero { padding: 96px 0 72px; }
+.where { margin-top: 36px; max-width: 620px; padding: 22px 24px; border: 2px solid var(--ink); border-radius: 16px; background: var(--surface); box-shadow: 6px 6px 0 var(--shadow); font-size: 16px; display: grid; gap: 10px; }
+.where .mono { color: var(--muted); }
+.where p { margin: 0; }
+
+/* Why we built it */
+.why { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; }
+.quote { background: var(--surface); border: 2px solid var(--ink); border-radius: 24px; box-shadow: 8px 8px 0 var(--shadow); padding: 36px; font-size: 20px; }
+.quote p { margin: 0 0 18px; }
+.quote .sig { margin: 8px 0 0; color: var(--muted); }
+
+/* Who it's for */
+.cards3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+.card { background: var(--surface); border: 2px solid var(--ink); border-radius: 20px; box-shadow: 6px 6px 0 var(--shadow); padding: 26px; }
+.card h3 { margin: 0 0 8px; font-size: 22px; }
+.card p { margin: 0; color: var(--muted); font-size: 16px; }
+.card .mono { display: block; color: var(--muted); margin-bottom: 6px; }
+.lists { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 28px; }
+.list { border: 1px solid var(--line); border-radius: 20px; padding: 24px 26px; background: var(--surface); }
+.list.notyet { background: var(--warn-soft); color: var(--warn-ink); border-color: transparent; }
+.list .mono { display: block; margin-bottom: 12px; color: inherit; opacity: .8; }
+.list ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; font-size: 16px; }
+.list li::before { content: "✓"; font-weight: 700; margin-right: 10px; }
+.list.notyet li::before { content: "•"; }
+
+/* Who makes it */
+.makers { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: start; }
+.company-card { margin-top: 30px; padding: 22px 24px; border: 1px solid var(--line); border-radius: 16px; background: var(--surface); font-size: 15px; }
+.company-card .mono { color: var(--muted); }
+.company-card strong { display: block; font: 800 24px/1.2 var(--display); margin: 4px 0 6px; }
+.company-card p { margin: 0; color: var(--muted); }
+.receipts { display: grid; gap: 14px; }
+.receipt { display: grid; grid-template-columns: 28px 1fr; gap: 14px; align-items: start; padding: 18px 20px; border: 2px solid var(--ink); border-radius: 16px; background: var(--surface); box-shadow: 4px 4px 0 var(--shadow); }
+.receipt .box-tick { width: 24px; height: 24px; border: 2px solid var(--ink); border-radius: 6px; display: grid; place-items: center; }
+.receipt .box-tick svg { width: 14px; height: 12px; }
+.receipt .box-tick path { fill: none; stroke: var(--ink); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
+.receipt.pending .box-tick { border-style: dashed; }
+.receipt strong { display: block; font-size: 17px; }
+.receipt span { color: var(--muted); font-size: 15px; }
+
+/* Under the hood */
+.specs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+.specs .card h3 { font: 800 26px/1.15 var(--display); }
+
+/* Both spellings */
+.spell { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: center; padding: 64px 0; border-top: 1px solid var(--line); }
+.spell h2 { font: 800 clamp(30px, 3.4vw, 44px)/1.08 var(--display); margin: 0; letter-spacing: -.02em; }
+.spell p { margin: 0; color: var(--muted); font-size: 19px; }
+
+/* What's new */
+.news { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+.news .card { box-shadow: none; border-width: 1px; border-color: var(--line); background: var(--raised); }
+.more { display: inline-block; margin-top: 28px; font-weight: 700; }
+
+/* Changelog */
+.log { max-width: 760px; }
+.release { margin-top: 44px; }
+.release .mono { color: var(--muted); display: block; padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+.release ul { margin: 0; padding-left: 22px; display: grid; gap: 8px; }
+
+nav.links a[aria-current="page"] { color: var(--ink); font-weight: 700; }
+
+@media (max-width: 900px) {
+  .page { padding: 0 16px; }
+  .sec { padding: 56px 0; }
+  .sec-bar { margin-bottom: 28px; }
+  .sec-bar .right { display: none; }
+  .about-hero { padding: 56px 0 40px; }
+  .lead { font-size: 17px; }
+  .why, .makers, .lists, .spell { grid-template-columns: 1fr; gap: 28px; }
+  .cards3, .specs, .news { grid-template-columns: 1fr; gap: 16px; }
+  .quote { padding: 24px; font-size: 17px; box-shadow: 5px 5px 0 var(--shadow); }
+  .card { box-shadow: 4px 4px 0 var(--shadow); }
+  .where { box-shadow: 4px 4px 0 var(--shadow); }
+  .spell { padding: 44px 0; }
+}
