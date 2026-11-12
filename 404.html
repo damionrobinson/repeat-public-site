@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Repeit</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/play/play.css">
+<style>
+  .nf { min-height: 100vh; min-height: 100svh; display: grid; place-items: center; text-align: center; padding: 40px 20px; }
+  .nf .inner { display: flex; flex-direction: column; align-items: center; gap: 22px; }
+  .nf h1 { font: 800 clamp(48px, 9vw, 104px)/1 var(--display); letter-spacing: -.03em; margin: 0; }
+  .nf p { margin: 0; color: var(--muted); font-size: 19px; }
+</style>
+</head>
+<body>
+<main class="nf">
+  <div class="inner">
+    <span class="mono" style="color:var(--muted)">Error 404</span>
+    <h1><span class="typo" id="pgae"><span class="w" aria-hidden="true">Pgae</span><span class="sr">Page</span></span> not found.</h1>
+    <p>We fixed the typo. We couldn’t fix the page.</p>
+    <a class="btn" href="/">Take me home</a>
+  </div>
+</main>
+<script>
+  // "Pgae" corrects itself to "Page". The joke is the error, never the visitor.
+  setTimeout(function () {
+    var el = document.getElementById('pgae'), w = el.querySelector('.w');
+    w.textContent = 'Page'; el.classList.add('fixed');
+    el.insertAdjacentHTML('beforeend', '<svg class="tick" viewBox="0 0 16 14" aria-hidden="true"><path d="M1 7 L6 12 L15 1"/></svg>');
+  }, window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 0 : 1200);
+</script>
+</body>
+</html>
