@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Terms &middot; Repeit</title>
-<meta name="description" content="What Repeit shares by default once you join the beta, and why.">
+<title>Terms · Repeit</title>
+<meta name="description" content="The terms for using Repeat and repeit.com: your licence, what you must not do (copying, reverse engineering, reselling), buying, refunds and the law.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
@@ -16,12 +16,12 @@
   /* Tokens shared with index.html (docs/designs/09-developer-handover.md §2); kept in sync by hand until there's a build step. */
   :root {
     --bg: #F6F5F1; --surface: #FFFFFF; --line: #E4E2DC; --ink: #1B1D22; --on-ink: #FFFFFF;
-    --muted: #565B66;
+    --muted: #565B66; --warn-soft: #FFF1DB; --warn-ink: #6B4100;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --bg: #141519; --surface: #1C1E24; --line: #33363E; --ink: #F2F2F4; --on-ink: #17181C;
-      --muted: #A9AEB8;
+      --muted: #A9AEB8; --warn-soft: #372A12; --warn-ink: #FBD38D;
     }
     .only-light { display: none !important; }
   }
@@ -41,9 +41,16 @@
   .updated { color: var(--muted); font-size: 14px; margin: 0 0 32px; }
   h2 { font-size: 19px; margin: 32px 0 8px; }
   p { margin: 0 0 16px; }
+  .todo { background: var(--warn-soft); color: var(--warn-ink); border-radius: 6px; padding: 1px 7px; font-weight: 700; }
   footer { padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
   footer nav a { margin-right: 16px; }
+  .summary { background: var(--surface); border: 2px solid var(--ink); border-radius: 16px; padding: 18px 20px 4px; margin: 0 0 28px; box-shadow: 4px 4px 0 var(--ink); }
+  h3 { font-size: 17px; margin: 20px 0 6px; }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; } li { margin: 0 0 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 18px; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 700; } code { font-size: 14px; }
 </style>
 </head>
 <body>
@@ -59,24 +66,97 @@
 <main>
   <div class="wrap legal">
     <h1>Terms</h1>
-    <p class="updated">Last updated: date to be added when this page is published. This page covers what Repeat shares by default and why; it will grow as the product and our legal review progress.</p>
+    <p class="updated">Last updated: 12 November 2026</p>
 
-    <h2 id="usage-information">Usage information</h2>
-    <p>By default, Repeat shares anonymous counts of how you use the app &mdash; for example, that dictation was used, or a spelling fix was applied &mdash; to help us improve it. This never includes anything you've dictated, written, or had checked; the app is built so that information structurally can't be included, not just kept out by policy. You can turn this off at any time in Settings.</p>
+    <div class="summary">
+      <p><strong>The short version.</strong> You can use Repeat on your own devices. What you write and say stays yours and stays on your device. You must not copy, take apart, reverse engineer or resell Repeat, its code, its models or its settings, or use it to build a competing product. If you buy a licence, it covers up to 3 devices for a year, with a 14-day refund.</p>
+      <p>The full terms are below. They are a legal agreement between you and us, so please read them.</p>
+    </div>
 
-    <h2>Feedback</h2>
-    <p>If you send us feedback through the app, that message is sent directly to us when you choose to send it. We never see it before then.</p>
+    <h2 id="who">1. Who we are</h2>
+    <p>Repeat and repeit.com are made by <strong>Design Definition Limited</strong>, a company registered in the United Kingdom (“we”, “us”, “our”). <span class="todo">Company number and registered address to be added.</span> You can reach us at <a href="mailto:support@repeit.com">support@repeit.com</a>.</p>
+    <p>“<strong>Repeat</strong>” means our app for dictation and writing help on any platform, including its updates, licence keys, documentation, and the files it downloads to work (such as speech and writing model files, prompts, word lists and settings). “<strong>The website</strong>” means repeit.com. Our brand is spelled “Repeit” on purpose; the app is spelled right.</p>
 
-    <h2>Free trial</h2>
-    <p>Clicking &ldquo;Try Personal, 14 days free&rdquo; registers this device with our server, to track your trial. This never includes anything you've dictated, written, or had checked. Dictation, file transcription, basic cleanup, and your everyday free use of proofreading and rewrites are never affected by this and never involve a server call &mdash; this only happens if and when you choose to start a Personal trial.</p>
+    <h2 id="agreement">2. Agreeing to these terms</h2>
+    <p>By downloading, installing or using Repeat, or by using the website, you agree to these terms and to our <a href="privacy.html">privacy notice</a>. If you use Repeat for an organisation, you confirm you can accept these terms for it. If you don’t agree, please don’t use Repeat.</p>
+
+    <h2 id="licence">3. Your licence to use Repeat</h2>
+    <p>We <strong>licence</strong> Repeat to you; we don’t sell it. As long as you follow these terms, we give you a personal, non-exclusive, non-transferable, revocable right to install and use Repeat:</p>
+    <ul>
+      <li><strong>Free features</strong> (dictation and file transcription): on your own devices, for as long as we offer them.</li>
+      <li><strong>Free trial</strong>: one 30-day trial of the paid features per device.</li>
+      <li><strong>Paid licence</strong>: on up to <strong>3 devices</strong> at a time, for the period shown when you bought it (usually one year). You can move it by using “Deactivate this device” in Settings.</li>
+    </ul>
+    <p>Each licence key is for one person, or one named user in an organisation. Licence keys must not be shared, published, sold or transferred.</p>
+
+    <h2 id="restrictions">4. What you must not do</h2>
+    <p>Repeat took a lot of work. To protect it, you must not, and must not help or allow anyone else to:</p>
+    <ol>
+      <li><strong>Copy</strong> Repeat, or any part of it, except installing it on your own devices as section 3 allows.</li>
+      <li><strong>Reverse engineer, decompile, disassemble, decrypt or unpack</strong> Repeat, or try to work out its source code, structure, algorithms, or how it works inside.</li>
+      <li><strong>Extract, copy or reuse</strong> the model files, model settings, prompts, instructions, rules, word lists, dictionaries, meaning-guard logic, configuration or other data that Repeat contains or downloads, or use them outside Repeat.</li>
+      <li><strong>Modify, translate or adapt</strong> Repeat, or make anything based on it (a “derivative work”).</li>
+      <li><strong>Get around</strong> licence keys, trial limits, device limits, activation, updates or any security or protection in Repeat, or share ways to do so.</li>
+      <li><strong>Rent, lease, lend, sell, resell, sublicense, distribute or host</strong> Repeat, or offer it as a service to others.</li>
+      <li><strong>Use Repeat, its outputs or its behaviour to build, train, fine-tune, test or improve</strong> a product, service or AI model that competes with Repeat.</li>
+      <li><strong>Copy the website</strong>: its code, design, animations, text or images, or scrape it with automated tools, except your browser displaying it normally and search engines indexing it.</li>
+      <li><strong>Remove or hide</strong> any copyright, trade mark or other notice in Repeat or on the website.</li>
+      <li><strong>Use Repeat</strong> to break the law or anyone else’s rights.</li>
+    </ol>
+    <p>These limits apply as far as the law allows. Some laws give you a right to do certain things that can’t be taken away by a contract (for example, limited rights under the UK Copyright, Designs and Patents Act 1988 to make Repeat work with other software). If you think such a right applies, you must first ask us at <a href="mailto:support@repeit.com">support@repeit.com</a>. We’ll give you the information you need where the law requires it. Any information you get that way may only be used for that purpose, and must not be shared or used to make a product like Repeat.</p>
+
+    <h2 id="open-source">5. Open-source parts</h2>
+    <p>Repeat includes some open-source software and openly licensed model files (for example, speech recognition based on Whisper, and a writing model from the Qwen family). Each of those parts is covered by its own licence, which you can see in Repeat (Settings → About). Nothing in these terms limits the rights those licences give you <em>to those parts</em>. Everything else is ours and covered by these terms. That includes Repeat’s own code, design, interface, brand, and the way we choose, set up, combine, prompt and tune those parts.</p>
+
+    <h2 id="ip">6. Who owns what</h2>
+    <p><strong>We own Repeat and the website</strong>, including the code, design, animations, text, the names “Repeat” and “Repeit”, the squiggle and logos, and all related intellectual property. You get only the licence in section 3. We keep every right we don’t expressly give you.</p>
+    <p><strong>You own what you write and say.</strong> Repeat processes it on your device. We don’t receive it, so we don’t claim any rights in it.</p>
+    <p><strong>Feedback.</strong> If you send us ideas or suggestions, we may use them freely, without owing you anything.</p>
+
+    <h2 id="providers">7. Optional AI providers</h2>
+    <p>If you choose to connect your own account with another AI provider (such as Anthropic or OpenAI) or your own server, Repeat sends text there only when you ask it to. That provider’s own terms and privacy policy apply to what you send, and you are responsible for your account and its costs.</p>
+
+    <h2 id="buying">8. Buying a licence</h2>
+    <ul>
+      <li><strong>Paddle sells it.</strong> Licences are sold by our reseller, Paddle.com, the merchant of record. Paddle handles payment, invoices, sales tax and VAT. Paddle’s buyer terms also apply to your purchase.</li>
+      <li><strong>Price.</strong> The price is shown before you pay (for example £39, €45 or $49 a year, with VAT included in the UK and EU).</li>
+      <li><strong>Your key.</strong> You get a licence key on screen and by email. Keep it safe.</li>
+      <li><strong>No automatic renewal.</strong> A licence is a one-off purchase for its period and doesn’t renew automatically. When it ends, the paid features stop, and dictation, transcription and your data keep working. You can buy a new licence at any time.</li>
+      <li><strong>14-day refund.</strong> You can ask for a full refund within 14 days of buying, for any reason. Email <a href="mailto:support@repeit.com">support@repeit.com</a> or use your Paddle receipt. This doesn’t affect your other legal rights as a consumer.</li>
+    </ul>
+
+    <h2 id="beta">9. Beta and early versions</h2>
+    <p>Some versions of Repeat are early (“beta”) versions. They may have bugs, change, or stop working, and may not be signed by Apple or Microsoft yet. Keep your own copies of anything important.</p>
+
+    <h2 id="updates">10. Updates and changes</h2>
+    <p>We may update Repeat to fix problems, improve it or keep it secure, and we may change or stop features. We won’t take away a paid feature you have already paid for during your licence period without offering a fair refund. We may change these terms; the date at the top will change, and we’ll tell licence holders about important changes before they apply.</p>
+
+    <h2 id="ending">11. Ending the licence</h2>
+    <p>You can stop using Repeat at any time. We may suspend or end your licence, and deactivate your licence key, if you seriously or repeatedly break these terms, especially section 4. When the licence ends you must stop using Repeat and delete it. Sections 4, 6, 12, 13 and 14 still apply after it ends.</p>
+
+    <h2 id="enforcement">12. Protecting Repeat</h2>
+    <p>Repeat may use technical protections, such as licence checks, signed builds and measures that make copying or reverse engineering harder. You must not interfere with them. Breaking section 4 could cause us harm that money alone can’t put right, so we may ask a court to stop it (for example with an injunction), as well as claiming damages and costs, and we may report unlawful copying to the platforms where it appears.</p>
+
+    <h2 id="liability">13. Our responsibility to you</h2>
+    <p>Repeat is a writing tool. Please check important text before you send it. We provide Repeat with reasonable care and skill. Beyond that, and as far as the law allows, we provide it “as is” and don’t promise it will be error-free or suit every purpose.</p>
+    <p><strong>If you are a consumer</strong>, you have legal rights (for example, under the UK Consumer Rights Act 2015) that these terms don’t affect. We are responsible for loss you suffer that is a foreseeable result of us breaking these terms or not using reasonable care. We aren’t responsible for loss that wasn’t foreseeable, or for business losses.</p>
+    <p><strong>If you use Repeat for business</strong>, we aren’t liable for loss of profit, revenue, business, data or goodwill, or for indirect loss. Our total liability is limited to the amount you paid us for Repeat in the 12 months before the claim, or £100 if that is higher.</p>
+    <p>Nothing in these terms limits liability for death or personal injury caused by negligence, for fraud, or for anything else the law doesn’t allow to be limited.</p>
+
+    <h2 id="law">14. Law and disputes</h2>
+    <p>These terms are governed by the law of England and Wales, and the courts of England and Wales can hear disputes. If you are a consumer living in Scotland, Northern Ireland or the EU, you can also bring a claim in your local courts and keep the protections of your local law. Please contact us first at <a href="mailto:support@repeit.com">support@repeit.com</a>; most things can be sorted out quickly.</p>
+
+    <h2 id="misc">15. Other things</h2>
+    <p>If a court decides part of these terms can’t be enforced, the rest still applies. If we don’t enforce something straight away, we can still do it later. You can’t transfer your rights under these terms without our agreement. These terms, the privacy notice and Paddle’s buyer terms are the whole agreement about Repeat.</p>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>Repeit. The app itself is spelled right: Repeat.</span>
-    <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    <span>Repeit. The app itself is spelled right: Repeat. © 2026 Design Definition Limited.</span>
+    <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></nav>
   </div>
 </footer>
+<script src="assets/consent.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Privacy notice · Repeit</title>
-<meta name="description" content="What Repeit collects on the beta sign-up form and in the app, and why, in plain English.">
+<meta name="description" content="What Repeat and repeit.com collect and why, in plain English. Your writing and voice stay on your device. Analytics only if you accept.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
@@ -45,6 +45,12 @@
   footer { padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
   footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
   footer nav a { margin-right: 16px; }
+  .summary { background: var(--surface); border: 2px solid var(--ink); border-radius: 16px; padding: 18px 20px 4px; margin: 0 0 28px; box-shadow: 4px 4px 0 var(--ink); }
+  h3 { font-size: 17px; margin: 20px 0 6px; }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; } li { margin: 0 0 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 18px; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 700; } code { font-size: 14px; }
 </style>
 </head>
 <body>
@@ -60,32 +66,99 @@
 <main>
   <div class="wrap legal">
     <h1>Privacy notice</h1>
-    <p class="updated">Last updated: date to be added when this page is published.</p>
+    <p class="updated">Last updated: 12 November 2026</p>
 
-    <p>Repeat (we, us) is a UK-based company that makes Repeit, an on-device dictation and writing app. This notice covers two things: the beta sign-up form on repeit.com, and what the app itself shares once you've joined the beta. For what the app shares and why, see the usage-information section of our <a href="terms.html#usage-information">Terms</a> — this notice and that page cover the two sides of the same picture.</p>
+    <div class="summary">
+      <p><strong>The short version.</strong> Repeat works on your device. What you write and what you say never leave it unless you choose to send text to an AI provider you connect yourself. We don’t have accounts, we don’t sell data, and we don’t show ads.</p>
+      <p>On this website we use Google Analytics <strong>only if you accept it</strong>. When you buy, Paddle handles your payment. Below is everything, in plain English.</p>
+    </div>
 
-    <h2>The sign-up form</h2>
-    <p><strong>What we collect:</strong> your email address, when you sign up for the beta. Nothing else from the form — no name, no device data, no tracking cookies.</p>
-    <p><strong>What we use it for:</strong> to send you the beta build when it's ready, and news about the launch. That's all. We don't use it for ads, and we don't sell or share it with anyone else.</p>
-    <p><strong>How long we keep it:</strong> until you unsubscribe, or until the beta programme ends, whichever comes first.</p>
-    <p><strong>Where it's stored:</strong> with our form provider, Formspree, who processes the sign-up on our behalf. We don't maintain a separate marketing list or CRM with your details at this stage.</p>
+    <h2 id="who">1. Who we are</h2>
+    <p><strong>Design Definition Limited</strong>, a company registered in the United Kingdom, makes Repeat and runs repeit.com. We are the “controller” of the personal data described here, except where we say someone else is. <span class="todo">Company number and registered address to be added.</span> Contact: <a href="mailto:support@repeit.com">support@repeit.com</a>.</p>
 
-    <h2>Your rights</h2>
-    <p>You can ask to see, correct or delete your email address at any time, and you can unsubscribe from any email we send. To do either, contact support@repeit.com.</p>
+    <h2 id="app">2. The Repeat app</h2>
+    <h3>What stays on your device (we never receive it)</h3>
+    <ul>
+      <li>Everything you dictate, type, select, proofread or rewrite, and the audio of your voice.</li>
+      <li>Your history, notes, dictionary, snippets, style rules, meeting recordings and transcripts.</li>
+      <li>API keys for any AI provider you connect. They are stored in your device’s secure keychain.</li>
+    </ul>
+    <p>Speech recognition, checking and rewriting run on your device and work offline once set up. Repeat never reads password or other secure fields.</p>
 
-    <h2>Children</h2>
-    <p>This form isn't aimed at children. Please don't sign up if you're under 16.</p>
+    <h3>What leaves your device, and why</h3>
+    <ul>
+      <li><strong>Model downloads.</strong> On first use, Repeat downloads its speech and writing model files from Hugging Face. Like any download, Hugging Face sees your IP address. No personal content is sent.</li>
+      <li><strong>Free trial and licence.</strong> Starting a trial or activating a licence sends your licence key (if you have one) and an anonymous device code to our licence server at licence.repeit.com. This lets us enforce the 3-device limit. No name, email, hardware serial number or content is sent. After activation, Repeat works offline and checks in only occasionally.</li>
+      <li><strong>“Help us improve Repeat” (off unless you turn it on).</strong> If you switch it on, Repeat sends anonymous counts, such as “dictation used”, “a fix was accepted” or “the app started”, and crash reports (where in the code a crash happened, never what you were writing). If you have activated a licence, your licence key is attached so we can fix problems affecting it. You can turn this off at any time in Settings.</li>
+      <li><strong>Feedback you choose to send.</strong> When you use “Report a problem” or send feedback, we receive your message, any screenshot you attach, and app details (app version, operating system) unless you untick them.</li>
+      <li><strong>AI providers you connect (optional).</strong> If you connect Anthropic, OpenAI or your own server, Repeat sends the text you ask it to rewrite or check straight to that provider, only when you ask. We don’t see it. That provider’s privacy policy applies.</li>
+    </ul>
 
-    <h2>Changes</h2>
-    <p>If this notice changes, we'll update the date at the top.</p>
+    <h2 id="website">3. This website</h2>
+    <h3 id="cookies">Analytics and cookies</h3>
+    <p>When you first visit, we ask whether you accept analytics. <strong>If you say no, or don’t answer, we don’t load Google Analytics and no analytics cookies are set.</strong> If you accept, we use Google Analytics 4 to learn how many people visit, which pages they look at, roughly where they are (country and city, worked out from the IP address, which Google Analytics 4 doesn’t store), what device and browser they use, how they found us, and whether they sign up for the beta or buy. We have switched off Google signals, ad personalisation and sharing our data with Google for its own purposes. Google acts as our processor. We keep this data for 2 months.</p>
+    <p>Cookies set only if you accept:</p>
+    <table>
+      <tr><th>Cookie</th><th>Set by</th><th>Purpose</th><th>Lasts</th></tr>
+      <tr><td><code>_ga</code></td><td>Google Analytics</td><td>Tells visits apart, without identifying you</td><td>2 years</td></tr>
+      <tr><td><code>_ga_F3P1BZFKBR</code></td><td>Google Analytics</td><td>Keeps track of the current visit</td><td>2 years</td></tr>
+    </table>
+    <p>We also save your cookie choice, and your light or dark setting, in your browser’s local storage. These are needed for the site to remember what you chose, and aren’t sent to us. You can change your mind at any time with <a href="#" data-cookie-settings>Cookie settings</a>. Saying no deletes the analytics cookies.</p>
+
+    <h3>Beta sign-up</h3>
+    <p>If you join the beta, we collect your email address and any optional answers you give (what you mostly write, and whether you’re interested in the accessibility price or translation help). We use them to send you the beta and news about Repeat, and to understand who it’s for. Our form provider, Formspree, processes the sign-up for us. We keep your details until you unsubscribe or ask us to delete them, and in any case no more than 12 months after the beta ends. Every email has an unsubscribe link.</p>
+
+    <h3>Buying a licence</h3>
+    <p>Paddle.com is the merchant of record. It collects your name, email, payment and billing details, and is responsible for that data under <a href="https://www.paddle.com/legal/privacy" rel="noopener">Paddle’s privacy policy</a>. Paddle tells us about the sale: a transaction ID, the product, the country, and your email address. We use your email address once, to send your licence key through our email provider, Resend. We don’t store it in our licence system. We keep the licence key, transaction ID and the anonymous device codes that activated it while the licence is valid, plus 6 years for tax and accounting records.</p>
+
+    <h3>Emails to us</h3>
+    <p>If you email <a href="mailto:support@repeit.com">support@repeit.com</a>, we keep the conversation for as long as we need it to help you, and then no more than 2 years.</p>
+
+    <h3>Hosting and fonts</h3>
+    <p>The website is hosted on GitHub Pages, and our licence server runs on DigitalOcean. Like all web servers, they briefly log IP addresses for security. The website loads its fonts from Google Fonts, which means your browser asks Google for the font files and Google sees your IP address.</p>
+
+    <h2 id="legal-basis">4. Our legal reasons</h2>
+    <ul>
+      <li><strong>Consent</strong>: Google Analytics, the optional “Help us improve Repeat” sharing, and beta emails. You can withdraw consent at any time.</li>
+      <li><strong>Contract</strong>: licences, trials, device activation and sending your licence key.</li>
+      <li><strong>Legitimate interests</strong>: keeping our servers secure, preventing licence abuse and copying, answering feedback and support emails, and enforcing our terms.</li>
+      <li><strong>Legal obligation</strong>: tax and accounting records.</li>
+    </ul>
+
+    <h2 id="sharing">5. Who else is involved</h2>
+    <p>We never sell personal data. We use these service providers, only for the purposes above:</p>
+    <table>
+      <tr><th>Provider</th><th>What for</th><th>Where</th></tr>
+      <tr><td>Paddle</td><td>Payments, tax, invoices (separate controller)</td><td>UK, EU and US</td></tr>
+      <tr><td>Google (Analytics, Fonts)</td><td>Website analytics (if you accept), fonts</td><td>EU and US</td></tr>
+      <tr><td>Formspree</td><td>Beta sign-up form</td><td>US</td></tr>
+      <tr><td>Resend</td><td>Sending licence-key emails</td><td>US</td></tr>
+      <tr><td>DigitalOcean</td><td>Hosting our licence server</td><td>Depends on server region</td></tr>
+      <tr><td>GitHub</td><td>Hosting this website</td><td>US</td></tr>
+      <tr><td>Hugging Face</td><td>Serving model downloads to the app</td><td>US and EU</td></tr>
+    </table>
+    <p>Where data goes outside the UK, we rely on UK adequacy regulations (including the UK Extension to the EU–US Data Privacy Framework) or the UK International Data Transfer Addendum to the EU Standard Contractual Clauses. We may also share information if the law requires it, or to protect our rights, for example against unlawful copying of Repeat.</p>
+
+    <h2 id="rights">6. Your rights</h2>
+    <p>You can ask to see, correct, delete or export your personal data, to restrict or object to how we use it, and to withdraw consent. Email <a href="mailto:support@repeit.com">support@repeit.com</a>; we reply within one month. Because Repeat keeps your content on your device, you control it directly: deleting Repeat or its data folder deletes it. If you’re unhappy, you can complain to the UK Information Commissioner’s Office (<a href="https://ico.org.uk" rel="noopener">ico.org.uk</a>), or to your local data protection authority if you live in the EU.</p>
+
+    <h2 id="children">7. Children</h2>
+    <p>Repeat and this website aren’t aimed at children under 13, and the beta sign-up is for people aged 16 and over. If you think a child has given us personal data, contact us and we’ll delete it.</p>
+
+    <h2 id="security">8. Security</h2>
+    <p>We keep what we hold to a minimum, use encrypted connections, sign licence data so it can’t be forged, and store API keys and licences in the operating system’s secure keychain on your device.</p>
+
+    <h2 id="changes">9. Changes</h2>
+    <p>If we change this notice, we’ll update the date at the top. If a change matters, for example a new kind of data, we’ll say so on this site and, for licence holders, by email, before it applies.</p>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
-    <span>Repeit. The app itself is spelled right: Repeat.</span>
-    <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></nav>
+    <span>Repeit. The app itself is spelled right: Repeat. © 2026 Design Definition Limited.</span>
+    <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></nav>
   </div>
 </footer>
+<script src="assets/consent.js"></script>
 </body>
 </html>

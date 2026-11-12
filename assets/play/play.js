@@ -351,6 +351,7 @@
       e.target.style.display = 'none';
       if (DOWNLOAD_URL) $('#download-link').href = DOWNLOAD_URL; else $('#download-block').style.display = 'none';
       $('#thanks').style.display = 'block';
+      if (window.repeitTrack) window.repeitTrack('generate_lead', { method: 'beta_form' }); // counted only if analytics accepted; no email sent to GA
     };
     var button = e.target.querySelector('button');
     var failed = function () { button.disabled = false; button.textContent = 'Get the beta'; toast('Sorry, that didn’t go through. Please try again in a moment.'); };
