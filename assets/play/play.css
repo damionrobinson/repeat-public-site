@@ -304,3 +304,4 @@ footer nav a { color: var(--muted); text-decoration: none; font: 11px var(--mono
 @media (max-width: 900px) { .sidetab .long { display: none; } .sidetab .short { display: inline; } .sidetab-btn { padding: 7px 11px; opacity: .92; } }
 .hero .local { margin-top: 18px; }
 @media (max-width: 900px) { .hero .local { margin-top: 10px; } }
+footer .company { flex-basis: 100%; font-size: 12px; color: var(--muted); }
