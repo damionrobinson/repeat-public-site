@@ -198,6 +198,7 @@ img { max-width: 100%; }
 .plan ul { list-style: none; margin: 4px 0 10px; padding: 0; display: flex; flex-direction: column; gap: 6px; font-size: 16px; }
 .plan li::before { content: "✓"; margin-right: 10px; font-weight: 700; }
 .plan .btn { width: 100%; }
+.plans.three { gap: 28px; } .plans.three .plan { width: auto; flex: 1 1 0; max-width: 330px; min-width: 0; padding: 28px; } .plans.three .plan .price { font-size: 56px; } .plan.once { transform: rotate(-1deg); } .plans.three .sticker { right: -18px; top: -18px; }
 .sticker { position: absolute; right: calc(50% - 470px); top: -10px; transform: rotate(-12deg); background: var(--ink); color: var(--on-ink); border-radius: 999px; padding: 10px 16px; font: 700 10px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .panel .fine { text-align: center; color: var(--muted); font-size: 14px; margin: 40px auto 0; max-width: none; }
 
@@ -248,7 +249,7 @@ footer nav a { color: var(--muted); text-decoration: none; font: 11px var(--mono
   .slap { min-height: 300px; } .slap .sentence { top: 56px; font-size: 34px; } .slap .cursor { top: 120px; } .slap .ai { top: 148px; }
   .slap .held { left: 16px; right: 16px; bottom: 16px; padding: 12px; } .slap .held strong { font-size: 18px; }
   .plats { grid-template-columns: 1fr 1fr; gap: 14px; } .plat { height: 140px; } .plat .face { padding: 16px; border-radius: 14px; } .plat .face h3 { font-size: 26px; } .plat .back p { font-size: 16px; }
-  .plans { flex-direction: column; gap: 18px; } .plan { width: 100%; padding: 20px; transform: none; } .plan.lic { transform: none; } .plan .price { font-size: 44px; } .sticker { display: none; }
+  .plans { flex-direction: column; gap: 18px; } .plan { width: 100%; padding: 20px; transform: none; } .plan.lic { transform: none; } .plan .price { font-size: 44px; } .sticker { display: none; } .plans.three .plan { width: 100%; padding: 20px; } .plan.once { transform: none; } .plans.three .plan .price { font-size: 44px; }
   .ruler { right: 16px; bottom: 16px; } .ruler a { display: none; }
   footer { padding: 28px 16px; }
 }
