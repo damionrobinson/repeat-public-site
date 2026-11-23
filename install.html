@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Opening Repeat &middot; Repeit</title>
+<title>Opening Repeit &middot; Install help</title>
 <meta name="description" content="Repeat's beta isn't signed yet &mdash; here's how to open it on your Mac.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
@@ -61,34 +61,38 @@
 
 <main>
   <div class="wrap legal">
-    <h1>Opening Repeat</h1>
-    <p class="updated">The beta isn't signed with an Apple Developer ID yet, so macOS blocks it by default the first time &mdash; this is normal, and only takes a minute to get past.</p>
+    <h1>Opening Repeit</h1>
+    <p class="updated">The beta isn't notarised by Apple yet, so macOS blocks it the first time you open it. That's normal for a beta, and it only takes a minute to get past.</p>
 
-    <p class="note">macOS will say the app "can't be opened" or is from an "unidentified developer". That's expected for an unsigned beta, not a sign anything's wrong with the download.</p>
+    <p class="note">macOS will say it "can't check Repeit for malware". That's expected until Apple signing is done, not a sign anything's wrong with the download.</p>
 
-    <h2>1. Unzip and move it to Applications</h2>
-    <p>Double-click the downloaded <code>.zip</code>, then drag <code>Repeat.app</code> into your <code>Applications</code> folder.</p>
+    <h2>What you need</h2>
+    <p>A Mac with Apple silicon (M1 or later) and macOS 13 or newer, and about 4 GB of free disk space. On first launch Repeit downloads its on-device models once; after that it works offline.</p>
+
+    <h2>1. Open the download and drag Repeit to Applications</h2>
+    <p>Double-click the downloaded <code>.dmg</code> file (for example <code>Repeit-0.3.0-build6.dmg</code>). In the window that opens, drag <strong>Repeit</strong> onto the <strong>Applications</strong> folder next to it. The window also has a short "How to open Repeit" note with these same steps.</p>
 
     <h2>2. Open it the first time</h2>
-    <p>Double-clicking it will show a warning and refuse to open &mdash; that's expected. Instead:</p>
+    <p>Open Applications and double-click Repeit. macOS shows a warning and won't open it yet. Instead:</p>
     <ol>
-      <li>Open <strong>System Settings &rarr; Privacy &amp; Security</strong>.</li>
-      <li>Scroll down to the Security section. You'll see a line about Repeat being blocked, with an <strong>Open Anyway</strong> button next to it. Click it.</li>
-      <li>Confirm in the dialog that appears.</li>
+      <li>Click <strong>Done</strong> (not Move to Bin).</li>
+      <li>Open <strong>System Settings &rarr; Privacy &amp; Security</strong>, scroll down, and click <strong>Open Anyway</strong> next to Repeit.</li>
+      <li>Confirm with your password or Touch ID. You only do this once for each download.</li>
     </ol>
-    <p>(On older macOS versions you could right-click the app and choose Open instead &mdash; macOS 15 removed that shortcut for unsigned apps, so Open Anyway in System Settings is the one reliable path now.)</p>
-    <p>You only need to do this once per download. If you download a newer build later, you'll need to repeat this step for that one too &mdash; each build is its own unsigned app as far as macOS is concerned.</p>
+    <p>Prefer Terminal? <code>xattr -dr com.apple.quarantine /Applications/Repeit.app</code> does the same.</p>
 
-    <h2>3. Grant permissions</h2>
-    <p>Repeat will ask for two permissions the first time it needs them:</p>
+    <h2>3. Set up</h2>
     <ul>
-      <li><strong>Microphone</strong> &mdash; to hear you while you hold the dictation shortcut.</li>
-      <li><strong>Accessibility</strong> &mdash; to paste your words into other apps, and to read text you select for proofreading.</li>
+      <li>Repeit downloads what it needs first (usually under a minute) and shows its progress. The larger writing model carries on in the background.</li>
+      <li>Allow <strong>Microphone</strong> (for dictation) and <strong>Accessibility</strong> (to see and fix text where you type) when Repeit asks.</li>
+      <li>Your 30-day free trial starts by itself. No card, no key. Dictation and transcription are free anyway.</li>
     </ul>
-    <p>Same as step 2: a new build means regranting these too, since macOS ties permissions to the exact unsigned app it saw before.</p>
 
-    <h2>4. Updates</h2>
-    <p>There's no auto-update for the beta yet &mdash; check back on the site for a newer download, and repeat steps 2-3 for it.</p>
+    <h2>4. Closing and quitting</h2>
+    <p>Closing the window, or pressing &#8984;Q, puts Repeit away in the menu bar, where it keeps working. To quit it for real, click its menu bar icon and choose <strong>Quit Repeit</strong>.</p>
+
+    <h2>5. Updates</h2>
+    <p>There's no auto-update for the beta yet. Check back here for a newer download and repeat steps 1 and 2 for it.</p>
 
     <p><a href="/">&larr; Back to repeit.com</a></p>
   </div>
@@ -96,8 +100,8 @@
 
 <footer>
   <div class="wrap">
-    <span>Repeit. The app itself is spelled right: Repeat.</span>
-    <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></nav>
+    <span>Repeit. Yes, we spelled it wrong.</span>
+    <nav><a href="/">Home</a><a href="features.html">Features</a><a href="buy.html">Pricing</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></nav>
   </div>
 </footer>
 <script src="assets/consent.js"></script>

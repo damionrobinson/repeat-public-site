@@ -66,7 +66,8 @@
 <main>
   <div class="wrap legal">
     <h1>Privacy notice</h1>
-    <p class="updated">Last updated: 12 November 2026</p>
+    <!-- Set to the day this version is published (brief 08). -->
+    <p class="updated">Last updated: 23 November 2026</p>
 
     <div class="summary">
       <p><strong>The short version.</strong> Repeat works on your device. What you write and what you say never leave it unless you choose to send text to an AI provider you connect yourself. We don’t have accounts, we don’t sell data, and we don’t show ads.</p>
@@ -76,7 +77,7 @@
     <h2 id="who">1. Who we are</h2>
     <p><strong>Design Definition Limited</strong>, a private limited company registered in England and Wales (company number 15183622), with its registered office at 27 Old Gloucester Street, London, WC1N 3AX, makes Repeat and runs repeit.com. We are the “controller” of the personal data described here, except where we say someone else is. Contact: <a href="mailto:support@repeit.com">support@repeit.com</a>.</p>
 
-    <h2 id="app">2. The Repeat app</h2>
+    <h2 id="app"><span id="in-the-app"></span>2. In the app</h2>
     <h3>What stays on your device (we never receive it)</h3>
     <ul>
       <li>Everything you dictate, type, select, proofread or rewrite, and the audio of your voice.</li>
@@ -88,8 +89,10 @@
     <h3>What leaves your device, and why</h3>
     <ul>
       <li><strong>Model downloads.</strong> On first use, Repeat downloads its speech and writing model files from Hugging Face. Like any download, Hugging Face sees your IP address. No personal content is sent.</li>
-      <li><strong>Free trial and licence.</strong> Starting a trial or activating a licence sends your licence key (if you have one) and an anonymous device code to our licence server at licence.repeit.com. This lets us enforce the 3-device limit. No name, email, hardware serial number or content is sent. After activation, Repeat works offline and checks in only occasionally.</li>
-      <li><strong>“Help us improve Repeat” (off unless you turn it on).</strong> If you switch it on, Repeat sends anonymous counts, such as “dictation used”, “a fix was accepted” or “the app started”, and crash reports (where in the code a crash happened, never what you were writing). If you have activated a licence, your licence key is attached so we can fix problems affecting it. You can turn this off at any time in Settings.</li>
+      <li><strong>Your device’s ID.</strong> The 30-day trial starts by itself the first time Repeat can reach the internet. To start it, Repeat sends your device’s ID (the identifier your operating system gives the device, not its serial number) to our licence server at licence.repeit.com. That’s how a reinstall on the same device doesn’t start a new trial. No name, email or content is sent.</li>
+      <li><strong>Your licence key.</strong> Activating a licence sends your key and a one-way code made from your device’s ID, so we can keep to 3 devices per key. After activation, Repeat works offline and checks in only occasionally.</li>
+      <li><strong>Usage counts (on unless you turn them off).</strong> Repeat sends counts of how you use it, like words dictated and fixes made. We never send your text; it all stays on your device. The counts are linked to your device’s ID, and to your licence key once you’ve bought one, so we can see how Repeat is used, whether people keep using it, and fix problems. You can turn this off any time in Settings → Privacy, and sending stops. We keep these counts until you ask us to delete them: email support@repeit.com and we’ll delete everything linked to your device and licence key.</li>
+      <li><strong>Crash reports.</strong> If Repeat crashes, it sends where in the code the crash happened, never what you were writing, with your licence key (or your device’s ID if you don’t have a licence) so we can fix problems affecting you.</li>
       <li><strong>Feedback you choose to send.</strong> When you use “Report a problem” or send feedback, we receive your message, any screenshot you attach, and app details (app version, operating system) unless you untick them.</li>
       <li><strong>AI providers you connect (optional).</strong> If you connect Anthropic, OpenAI or your own server, Repeat sends the text you ask it to rewrite or check straight to that provider, only when you ask. We don’t see it. That provider’s privacy policy applies.</li>
     </ul>
@@ -109,7 +112,7 @@
     <p>If you join the beta, we collect your email address and any optional answers you give (what you mostly write, and whether you’re interested in the accessibility price or translation help). We use them to send you the beta and news about Repeat, and to understand who it’s for. Our form provider, Formspree, processes the sign-up for us. We keep your details until you unsubscribe or ask us to delete them, and in any case no more than 12 months after the beta ends. Every email has an unsubscribe link.</p>
 
     <h3>Buying a licence</h3>
-    <p>Paddle.com is the merchant of record. It collects your name, email, payment and billing details, and is responsible for that data under <a href="https://www.paddle.com/legal/privacy" rel="noopener">Paddle’s privacy policy</a>. Paddle tells us about the sale: a transaction ID, the product, the country, and your email address. We use your email address once, to send your licence key through our email provider, Resend. We don’t store it in our licence system. We keep the licence key, transaction ID and the anonymous device codes that activated it while the licence is valid, plus 6 years for tax and accounting records.</p>
+    <p>Paddle.com is the merchant of record. It collects your name, email, payment and billing details, and is responsible for that data under <a href="https://www.paddle.com/legal/privacy" rel="noopener">Paddle’s privacy policy</a>. Paddle tells us about the sale: a transaction ID, the product, the country, and your email address. We use your email address once, to send your licence key through our email provider, Resend. We don’t store it in our licence system. We keep the licence key, transaction ID, the plan you bought and the one-way device codes that activated it while the licence is valid, plus 6 years for tax and accounting records.</p>
 
     <h3>Emails to us</h3>
     <p>If you email <a href="mailto:support@repeit.com">support@repeit.com</a>, we keep the conversation for as long as we need it to help you, and then no more than 2 years.</p>
@@ -119,9 +122,9 @@
 
     <h2 id="legal-basis">4. Our legal reasons</h2>
     <ul>
-      <li><strong>Consent</strong>: Google Analytics, the optional “Help us improve Repeat” sharing, and beta emails. You can withdraw consent at any time.</li>
+      <li><strong>Consent</strong>: Google Analytics and beta emails. You can withdraw consent at any time.</li>
       <li><strong>Contract</strong>: licences, trials, device activation and sending your licence key.</li>
-      <li><strong>Legitimate interests</strong>: keeping our servers secure, preventing licence abuse and copying, answering feedback and support emails, and enforcing our terms.</li>
+      <li><strong>Legitimate interests</strong>: usage counts and crash reports (to understand how Repeat is used and fix problems; you can turn usage counts off at any time), keeping our servers secure, preventing trial and licence abuse and copying, answering feedback and support emails, and enforcing our terms.</li>
       <li><strong>Legal obligation</strong>: tax and accounting records.</li>
     </ul>
 
@@ -146,7 +149,7 @@
     <p>Repeat and this website aren’t aimed at children under 13, and the beta sign-up is for people aged 16 and over. If you think a child has given us personal data, contact us and we’ll delete it.</p>
 
     <h2 id="security">8. Security</h2>
-    <p>We keep what we hold to a minimum, use encrypted connections, sign licence data so it can’t be forged, and store API keys and licences in the operating system’s secure keychain on your device.</p>
+    <p>We keep what we hold to a minimum, use encrypted connections, sign licence data so it can’t be forged, and store optional AI provider API keys in the operating system’s secure key store, and your licence in a signed file on your device on your device.</p>
 
     <h2 id="changes">9. Changes</h2>
     <p>If we change this notice, we’ll update the date at the top. If a change matters, for example a new kind of data, we’ll say so on this site and, for licence holders, by email, before it applies.</p>
@@ -156,7 +159,7 @@
 <footer>
   <div class="wrap">
     <span>Repeit. The app itself is spelled right: Repeat. © 2026 Design Definition Limited, company 15183622, registered in England and Wales.</span>
-    <nav><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></nav>
+    <nav><a href="/">Home</a><a href="features.html">Features</a><a href="buy.html">Pricing</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a></nav>
   </div>
 </footer>
 <script src="assets/consent.js"></script>

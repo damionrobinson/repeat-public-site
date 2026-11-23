@@ -3,129 +3,139 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Buy a licence &middot; Repeit</title>
-<meta name="description" content="One licence key, up to 3 Macs, for a year. Dictation stays free forever.">
+<title>Prices · One key, three devices · Repeit</title>
+<meta name="description" content="Dictation is free for good. A Repeit licence covers 3 devices: £39 a year, or pay once for £119 and keep it, with 5 years of updates.">
 <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
 <link rel="apple-touch-icon" href="assets/icon-180.png">
+<meta property="og:title" content="Repeit prices · One key. Three devices.">
+<meta property="og:description" content="Free dictation for good. £39 a year, or pay once and keep it.">
+<meta property="og:image" content="https://repeit.com/assets/og-1200x630.png">
+<meta property="og:url" content="https://repeit.com/buy.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://repeit.com/assets/og-1200x630.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
-<style>
-  /* Tokens shared with index.html (docs/designs/09-developer-handover.md §2); kept in sync by hand until there's a build step. */
-  :root {
-    --bg: #F6F5F1; --surface: #FFFFFF; --line: #E4E2DC; --ink: #1B1D22; --on-ink: #FFFFFF;
-    --muted: #565B66;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #141519; --surface: #1C1E24; --line: #33363E; --ink: #F2F2F4; --on-ink: #17181C;
-      --muted: #A9AEB8;
-    }
-    .only-light { display: none !important; }
-  }
-  @media (prefers-color-scheme: light) { .only-dark { display: none !important; } }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0; background: var(--bg); color: var(--ink);
-    font: 18px/1.6 "Atkinson Hyperlegible", system-ui, sans-serif;
-  }
-  a { color: var(--ink); }
-  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
-  header .wrap { display: flex; align-items: center; height: 72px; }
-  header img { height: 30px; width: auto; display: block; }
-  main { padding: 40px 0 64px; }
-  h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.2; margin: 0 0 8px; }
-  .lede { color: var(--muted); margin: 0 0 32px; max-width: 46ch; }
-  .plans { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .card {
-    max-width: 520px; background: var(--surface); border: 1px solid var(--line);
-    border-radius: 16px; padding: 28px;
-  }
-  .card h2 { margin: 0 0 4px; font-size: 22px; }
-  .price { font-size: 34px; font-weight: 700; margin: 8px 0 0; }
-  .price-note { color: var(--muted); font-size: 15px; margin: 0 0 20px; }
-  ul { padding-left: 20px; margin: 0 0 24px; }
-  li { margin-bottom: 6px; }
-  .btn {
-    display: inline-flex; align-items: center; justify-content: center; min-height: 44px;
-    padding: 0 22px; border-radius: 10px; border: 1px solid var(--ink);
-    background: var(--ink); color: var(--on-ink); font: inherit; font-weight: 700;
-    text-decoration: none; cursor: pointer; width: 100%;
-  }
-  .btn.alt { background: var(--surface); color: var(--ink); }
-  .btn[disabled] { opacity: .5; cursor: not-allowed; }
-  .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
-  .small { font-size: 15px; color: var(--muted); margin: 16px 0 0; }
-  footer { padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
-  footer a { margin-right: 16px; }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Atkinson+Hyperlegible+Mono:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/play/play.css?v=4">
+<link rel="stylesheet" href="assets/play/about.css?v=2">
+<link rel="stylesheet" href="assets/play/pages.css?v=2">
 </head>
 <body>
-<header>
-  <div class="wrap">
-    <a href="/" aria-label="Repeit home">
-      <img class="only-light" src="assets/wordmark-ink.svg" alt="Repeit">
-      <img class="only-dark" src="assets/wordmark-paper.svg" alt="Repeit">
-    </a>
-  </div>
+
+<header class="nav">
+  <a class="logo" href="/" aria-label="Repeit home">
+    <img class="on-light" src="assets/wordmark-ink.svg" alt="Repeit">
+    <img class="on-dark" src="assets/wordmark-paper.svg" alt="Repeit">
+  </a>
+  <nav class="links mono" id="site-menu" aria-label="Pages">
+    <a href="about.html">About</a>
+    <a href="features.html">Features</a>
+    <a href="/#talk">How it works</a>
+    <a href="buy.html" aria-current="page">Pricing</a>
+    <a href="install.html">Install help</a>
+    <a class="menu-only" href="/#beta">Get the beta</a>
+  </nav>
+  <span class="spacer"></span>
+  <button class="counter" id="counter" type="button" aria-live="polite" title="Find and fix the typos on this page">
+    <svg viewBox="0 0 18 8" aria-hidden="true"><path d="M0 4 Q1.5 0 3 4 T6 4 T9 4 T12 4 T15 4 T18 4"/></svg>
+    <span id="counter-text">0 of 2 typos fixed</span>
+  </button>
+  <button class="theme" id="theme" type="button" aria-label="Switch light or dark">☾</button>
+  <a class="btn small" href="/#beta">Get the beta</a>
+  <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><span></span><span></span><span></span></button>
 </header>
 
-<main>
-  <div class="wrap">
-    <h1>One key. Three devices. Pay yearly, or once.</h1>
-    <p class="lede">Dictation and file transcription stay free forever. A licence unlocks the writing help once your 30-day trial ends.</p>
+<main class="page">
 
-    <div class="plans">
-      <section class="card" aria-labelledby="plan">
-        <h2 id="plan">Yearly licence</h2>
-        <p class="price">£39 · €45 · $49</p>
-        <p class="price-note">For one year. After a year, everything you already have keeps working; renew to keep getting updates and the writing help.</p>
+  <section class="buy-hero" aria-labelledby="buy-title">
+    <h1 class="big" id="buy-title" data-wrong="One key. Three devcies.">One key. Three devices.</h1>
+    <p class="lead">Dictation, file transcription, spelling underlines and autocorrect are free for good. A Repeit™ licence adds Proofread and rewrite, Fix all, the AI grammar check, Notes rewrite, Meetings and Today. Try all of it free for 30 days first.</p>
+
+    <div class="tiers">
+      <section class="tier rise" aria-labelledby="t-free">
+        <span class="mono" id="t-free">Free</span>
+        <span class="price">£0</span>
         <ul>
-          <li>Proofread, rewrite and voice edits</li>
-          <li>Meetings, the local MCP server and your stats</li>
-          <li>Use it on up to 3 devices</li>
-          <li>No account. You get a key, and that's all we keep.</li>
+          <li>Dictation in any app</li>
+          <li>File transcription</li>
+          <li>Spelling underlines and autocorrect</li>
+          <li>30-day trial of everything</li>
         </ul>
-        <button class="btn" id="buy" type="button" disabled>Buy yearly</button>
+        <a class="btn alt" href="/#beta">Get the free beta</a>
+        <p class="soon"></p>
       </section>
 
-      <section class="card" aria-labelledby="plan-life">
-        <h2 id="plan-life">Lifetime licence</h2>
-        <p class="price">£99 · €115 · $129</p>
-        <p class="price-note">Pay once. Never expires, and includes every update.</p>
+      <section class="tier pick rise" aria-labelledby="t-year">
+        <span class="ribbon" aria-hidden="true">Most picked</span>
+        <span class="mono" id="t-year">Yearly</span>
+        <span class="price">£39</span>
+        <span class="per">€45 · $49 a year</span>
         <ul>
-          <li>Everything in the yearly licence</li>
-          <li>Use it on up to 3 devices</li>
-          <li>No renewals, ever</li>
-          <li>No account. You get a key, and that's all we keep.</li>
+          <li>Proofread, rewrite, Fix all and the AI grammar check</li>
+          <li>Meetings, Notes rewrite and Today</li>
         </ul>
-        <button class="btn alt" id="buy-lifetime" type="button" disabled>Buy lifetime</button>
+        <span class="terms">3 devices · 14-day refund</span>
+        <button class="btn" id="buy-yearly" type="button" disabled>Buy Yearly</button>
+        <p class="soon" id="yearly-note"></p>
+      </section>
+
+      <section class="tier rise" aria-labelledby="t-once">
+        <span class="mono" id="t-once">Pay once</span>
+        <span class="price">£119</span>
+        <span class="per">€135 · $149, once</span>
+        <ul>
+          <li>Everything in Yearly, <b>yours to keep</b></li>
+          <li><b>Every update for 5 years</b></li>
+        </ul>
+        <span class="terms">3 devices · no subscription · 14-day refund</span>
+        <button class="btn alt" id="buy-once" type="button" disabled>Pay once</button>
+        <p class="soon"></p>
       </section>
     </div>
 
-    <p class="small" id="status" role="status">Loading checkout…</p>
-    <p class="small">UK and EU prices include VAT. Checkout shows your local price and any tax before you pay. Payment is handled by Paddle, our reseller. Paddle asks for your email to send the receipt and your key. 14-day refund, no questions asked.</p>
-  </div>
+    <p class="buy-status" id="status" role="status">Loading checkout…</p>
+    <p class="why-once"><b>Why pay once?</b> Repeit runs on your device, so there are no cloud bills to pass on. Pay once costs about half of one year of Grammarly Pro and Wispr Flow together, and it’s yours to keep.</p>
+    <p class="buy-fine">UK and EU prices include VAT. Checkout shows your local price and any tax before you pay. Payment is handled by Paddle, our reseller, who asks for your email to send the receipt and your key. No account. We keep your key and a one-way code for each device it’s on (3 devices per key).</p>
+  </section>
+
+  <section class="sec" aria-labelledby="faq-title">
+    <div class="sec-bar mono"><b>FAQ</b> / Before you buy <span class="right">Short answers</span></div>
+    <h2 class="big" id="faq-title" data-wrong="Good questoins.">Good questions.</h2>
+    <div class="faq">
+      <details class="rise"><summary>What’s free, for good?</summary><p>Dictation, transcription, underlines and autocorrect. No trial clock on those.</p></details>
+      <details class="rise"><summary>What happens after a year on Yearly?</summary><p>Everything you already have keeps working. Renew to keep the writing help and new updates.</p></details>
+      <details class="rise"><summary>What does Pay once include?</summary><p>Keep Repeit with its writing help for good. You get every update and new feature for 5 years. After that, everything you have keeps working, and you can renew updates if you want the newest version.</p></details>
+      <details class="rise"><summary>Can I reinstall or switch devices?</summary><p>Reinstalling on the same device never uses up a slot. One key covers 3 different devices.</p></details>
+      <details class="rise"><summary>Does my writing go to your servers?</summary><p>No. Words and voice are processed on your device. We only see counts like words dictated, and you can turn that off.</p></details>
+    </div>
+  </section>
 </main>
 
 <footer>
-  <div class="wrap">
-    <a href="/">Home</a><a href="about.html">About</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a>
-  </div>
+  <span class="made">Made with <span class="typo hunt" data-fix="typos" tabindex="0" role="button" aria-label="Fix the typo: typso"><span class="w" aria-hidden="true">typso</span></span>, fixed with Repeit. No <span class="typo hunt" data-fix="typos" tabindex="0" role="button" aria-label="Fix the typo: tyops"><span class="w" aria-hidden="true">tyops</span></span> in the price.</span>
+  <span class="company">© 2026 Design Definition Limited · Company 15183622, registered in England and Wales · 27 Old Gloucester Street, London WC1N 3AX</span>
+  <nav><a href="/">Home</a><a href="about.html">About</a><a href="features.html">Features</a><a href="changelog.html">Changelog</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a><a href="mailto:support@repeit.com">support@repeit.com</a></nav>
 </footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="assets/checkout-config.js"></script>
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
 <script>
+  // Each card opens its own Paddle checkout. Pay once stays "coming soon"
+  // until PAY_ONCE_PRICE_ID is set in assets/checkout-config.js. The old
+  // Lifetime price is no longer offered (founder, 23 Nov 2026).
   (function () {
     var cfg = window.REPEAT_CHECKOUT || {};
-    var button = document.getElementById('buy');
-    var lifetime = document.getElementById('buy-lifetime');
+    var yearly = document.getElementById('buy-yearly');
+    var once = document.getElementById('buy-once');
     var status = document.getElementById('status');
 
+    if (!cfg.PAY_ONCE_PRICE_ID) {
+      once.textContent = 'Pay once: coming soon';
+    }
     if (!cfg.PADDLE_CLIENT_TOKEN || !cfg.LICENCE_PRICE_ID || !window.Paddle) {
       status.textContent = 'Not on sale yet. Join the beta on the home page and we’ll tell you when it is.';
       return;
@@ -149,20 +159,20 @@
     });
 
     var open = function (priceId) {
-      Paddle.Checkout.open({
-        items: [{ priceId: priceId, quantity: 1 }],
-        settings: { variant: 'one-page' }
-      });
+      Paddle.Checkout.open({ items: [{ priceId: priceId, quantity: 1 }], settings: { variant: 'one-page' } });
     };
-    button.disabled = false;
+    yearly.disabled = false;
     status.textContent = '';
-    button.addEventListener('click', function () { open(cfg.LICENCE_PRICE_ID); });
-    if (cfg.LIFETIME_PRICE_ID) {
-      lifetime.disabled = false;
-      lifetime.addEventListener('click', function () { open(cfg.LIFETIME_PRICE_ID); });
+    yearly.addEventListener('click', function () { open(cfg.LICENCE_PRICE_ID); });
+    if (cfg.PAY_ONCE_PRICE_ID) {
+      once.disabled = false;
+      once.addEventListener('click', function () { open(cfg.PAY_ONCE_PRICE_ID); });
     }
   })();
 </script>
+<script src="assets/vendor/gsap-3.13.0/gsap.min.js"></script>
 <script src="assets/consent.js"></script>
+<script src="assets/play/pages.js?v=2"></script>
+<script src="assets/play/menu.js"></script>
 </body>
 </html>

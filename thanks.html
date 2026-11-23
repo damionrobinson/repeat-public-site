@@ -54,6 +54,8 @@
   .btn:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
   .muted { color: var(--muted); }
   [hidden] { display: none !important; }
+  footer { padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  footer nav a { margin-right: 16px; }
 </style>
 </head>
 <body>
@@ -74,14 +76,21 @@
       <div id="ready" hidden>
         <p>Your licence key:</p>
         <div class="key" id="key"></div>
+        <p id="plan" hidden></p>
         <button class="btn" id="copy" type="button">Copy key</button>
-        <p>Paste it into Repeat's settings to activate it. It works on up to 3 devices.</p>
+        <p>Paste it into Repeit's Settings to activate it. It works on up to 3 devices.</p>
       </div>
       <p class="muted" id="later" hidden>This is taking longer than usual. Your key is also on its way by email. If it hasn't arrived within the hour, reply to your Paddle receipt and we'll sort it out.</p>
       <p class="muted">We've also emailed the key to you. Keep the email: it's your proof of purchase if you ever need to move the key to a new device.</p>
     </section>
   </div>
 </main>
+
+<footer>
+  <div class="wrap">
+    <nav><a href="/">Home</a><a href="features.html">Features</a><a href="install.html">Install help</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="mailto:support@repeit.com">support@repeit.com</a></nav>
+  </div>
+</footer>
 
 <script src="assets/checkout-config.js"></script>
 <script>
@@ -101,10 +110,24 @@
         .then(function (body) {
           if (body && body.licence_key) {
             document.getElementById('key').textContent = body.licence_key;
+            var line = planLine(body);
+            if (line) { var p = document.getElementById('plan'); p.textContent = line; p.hidden = false; }
             waiting.hidden = true;
             document.getElementById('ready').hidden = false;
           } else { retry(); }
         }, retry);
+    }
+    // Pay once: keep it for good, with updates until a date. Keys sold as
+    // Lifetime before 23 Nov (and gift keys) never expire. Yearly: its end.
+    function readable(iso) {
+      var d = new Date(iso);
+      return isNaN(d) ? '' : d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+    }
+    function planLine(body) {
+      if (body.plan === 'pay_once' && body.updates_until) return 'Pay once: yours to keep, with updates until ' + readable(body.updates_until) + '.';
+      if (body.plan === 'lifetime' || body.plan === 'gift') return 'Your licence never expires.';
+      if (body.valid_until && readable(body.valid_until)) return 'Valid until ' + readable(body.valid_until) + '.';
+      return '';
     }
     function retry() {
       if (++tries >= 20) { waiting.hidden = true; later.hidden = false; return; }
