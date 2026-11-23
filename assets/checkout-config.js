@@ -26,6 +26,6 @@ window.REPEAT_CHECKOUT = {
   PADDLE_ENV: 'sandbox',
   PADDLE_CLIENT_TOKEN: 'test_b0f78e86b753ea36da2915d91f7',
   LICENCE_PRICE_ID: 'pri_01m72hbtc123se0cc2bwcf4czj',
-  PAY_ONCE_PRICE_ID: '',
+  PAY_ONCE_PRICE_ID: 'pri_01m84dp8ge5a6x4m2exw5y1skv',
   LICENCE_SERVER_URL: 'https://licence.repeit.com/'
 };
