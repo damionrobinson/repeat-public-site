@@ -38,10 +38,6 @@
     <a class="menu-only" href="/#beta">Get the beta</a>
   </nav>
   <span class="spacer"></span>
-  <button class="counter" id="counter" type="button" aria-live="polite" title="Find and fix the typos on this page">
-    <svg viewBox="0 0 18 8" aria-hidden="true"><path d="M0 4 Q1.5 0 3 4 T6 4 T9 4 T12 4 T15 4 T18 4"/></svg>
-    <span id="counter-text">0 of 2 typos fixed</span>
-  </button>
   <button class="theme" id="theme" type="button" aria-label="Switch light or dark">☾</button>
   <a class="btn small" href="/#beta">Get the beta</a>
   <button class="menu-btn" id="menu-btn" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -54,7 +50,7 @@
     <p class="lead">Dictation, file transcription, spelling underlines and autocorrect are free for good. A Repeit™ licence adds Proofread and rewrite, Fix all, the AI grammar check, Notes rewrite, Meetings and Today. Try all of it free for 30 days first.</p>
 
     <div class="tiers">
-      <section class="tier rise" aria-labelledby="t-free">
+      <section class="tier" aria-labelledby="t-free">
         <span class="mono" id="t-free">Free</span>
         <span class="price">£0</span>
         <ul>
@@ -67,7 +63,7 @@
         <p class="soon"></p>
       </section>
 
-      <section class="tier pick rise" aria-labelledby="t-year">
+      <section class="tier pick" aria-labelledby="t-year">
         <span class="ribbon" aria-hidden="true">Most picked</span>
         <span class="mono" id="t-year">Yearly</span>
         <span class="price">£39</span>
@@ -81,7 +77,7 @@
         <p class="soon" id="yearly-note"></p>
       </section>
 
-      <section class="tier rise" aria-labelledby="t-once">
+      <section class="tier" aria-labelledby="t-once">
         <span class="mono" id="t-once">Pay once</span>
         <span class="price">£119</span>
         <span class="per">€135 · $149, once</span>
@@ -104,22 +100,21 @@
     <div class="sec-bar mono"><b>FAQ</b> / Before you buy <span class="right">Short answers</span></div>
     <h2 class="big" id="faq-title" data-wrong="Good questoins.">Good questions.</h2>
     <div class="faq">
-      <details class="rise"><summary>What’s free, for good?</summary><p>Dictation, transcription, underlines and autocorrect. No trial clock on those.</p></details>
-      <details class="rise"><summary>What happens after a year on Yearly?</summary><p>Everything you already have keeps working. Renew to keep the writing help and new updates.</p></details>
-      <details class="rise"><summary>What does Pay once include?</summary><p>Keep Repeit with its writing help for good. You get every update and new feature for 5 years. After that, everything you have keeps working, and you can renew updates if you want the newest version.</p></details>
-      <details class="rise"><summary>Can I reinstall or switch devices?</summary><p>Reinstalling on the same device never uses up a slot. One key covers 3 different devices.</p></details>
-      <details class="rise"><summary>Does my writing go to your servers?</summary><p>No. Words and voice are processed on your device. We only see counts like words dictated, and you can turn that off.</p></details>
+      <details ><summary>What’s free, for good?</summary><p>Dictation, transcription, underlines and autocorrect. No trial clock on those.</p></details>
+      <details ><summary>What happens after a year on Yearly?</summary><p>Everything you already have keeps working. Renew to keep the writing help and new updates.</p></details>
+      <details ><summary>What does Pay once include?</summary><p>Keep Repeit with its writing help for good. You get every update and new feature for 5 years. After that, everything you have keeps working, and you can renew updates if you want the newest version.</p></details>
+      <details ><summary>Can I reinstall or switch devices?</summary><p>Reinstalling on the same device never uses up a slot. One key covers 3 different devices.</p></details>
+      <details ><summary>Does my writing go to your servers?</summary><p>No. Words and voice are processed on your device. We only see counts like words dictated, and you can turn that off.</p></details>
     </div>
   </section>
 </main>
 
 <footer>
-  <span class="made">Made with <span class="typo hunt" data-fix="typos" tabindex="0" role="button" aria-label="Fix the typo: typso"><span class="w" aria-hidden="true">typso</span></span>, fixed with Repeit. No <span class="typo hunt" data-fix="typos" tabindex="0" role="button" aria-label="Fix the typo: tyops"><span class="w" aria-hidden="true">tyops</span></span> in the price.</span>
+  <span class="made">Made with typos, fixed with Repeit.</span>
   <span class="company">© 2026 Design Definition Limited · Company 15183622, registered in England and Wales · 27 Old Gloucester Street, London WC1N 3AX</span>
   <nav><a href="/">Home</a><a href="about.html">About</a><a href="features.html">Features</a><a href="changelog.html">Changelog</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="#" data-cookie-settings>Cookie settings</a><a href="mailto:support@repeit.com">support@repeit.com</a></nav>
 </footer>
 
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
 
 <script src="assets/checkout-config.js"></script>
 <script src="https://cdn.paddle.com/paddle/v2/paddle.js"></script>
@@ -170,9 +165,8 @@
     }
   })();
 </script>
-<script src="assets/vendor/gsap-3.13.0/gsap.min.js"></script>
 <script src="assets/consent.js"></script>
-<script src="assets/play/pages.js?v=2"></script>
+<script src="assets/play/about.js?v=2"></script>
 <script src="assets/play/menu.js"></script>
 </body>
 </html>
