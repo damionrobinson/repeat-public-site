@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Refunds · Repeit</title>
+<meta name="description" content="Repeit’s refund policy: a full refund within 14 days of buying, for any reason.">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/icon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/icon-16.png">
+<link rel="apple-touch-icon" href="assets/icon-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  /* Tokens shared with index.html (docs/designs/09-developer-handover.md §2); kept in sync by hand until there's a build step. */
+  :root {
+    --bg: #F6F5F1; --surface: #FFFFFF; --line: #E4E2DC; --ink: #1B1D22; --on-ink: #FFFFFF;
+    --muted: #565B66; --warn-soft: #FFF1DB; --warn-ink: #6B4100;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #141519; --surface: #1C1E24; --line: #33363E; --ink: #F2F2F4; --on-ink: #17181C;
+      --muted: #A9AEB8; --warn-soft: #372A12; --warn-ink: #FBD38D;
+    }
+    .only-light { display: none !important; }
+  }
+  @media (prefers-color-scheme: light) { .only-dark { display: none !important; } }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 18px/1.6 "Atkinson Hyperlegible", system-ui, sans-serif;
+  }
+  a { color: var(--ink); }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 20px; }
+  .legal { max-width: 700px; }
+  header .wrap { display: flex; align-items: center; height: 72px; }
+  header img { height: 30px; width: auto; display: block; }
+  main { padding: 40px 0 64px; }
+  h1 { font-size: clamp(28px, 5vw, 38px); line-height: 1.2; margin: 0 0 8px; }
+  .updated { color: var(--muted); font-size: 14px; margin: 0 0 32px; }
+  h2 { font-size: 19px; margin: 32px 0 8px; }
+  p { margin: 0 0 16px; }
+  .todo { background: var(--warn-soft); color: var(--warn-ink); border-radius: 6px; padding: 1px 7px; font-weight: 700; }
+  footer { padding: 32px 0 48px; border-top: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; }
+  footer nav a { margin-right: 16px; }
+  .summary { background: var(--surface); border: 2px solid var(--ink); border-radius: 16px; padding: 18px 20px 4px; margin: 0 0 28px; box-shadow: 4px 4px 0 var(--ink); }
+  h3 { font-size: 17px; margin: 20px 0 6px; }
+  ul, ol { margin: 0 0 16px; padding-left: 22px; } li { margin: 0 0 8px; }
+  table { width: 100%; border-collapse: collapse; margin: 0 0 18px; font-size: 15px; }
+  th, td { text-align: left; padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { font-weight: 700; } code { font-size: 14px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <a href="/" aria-label="Repeit home">
+      <img class="only-light" src="assets/wordmark-ink.svg" alt="Repeit">
+      <img class="only-dark" src="assets/wordmark-paper.svg" alt="Repeit">
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="wrap legal">
+    <h1>Refunds</h1>
+    <!-- Set to the day this version is published. Same policy as Terms §8 (terms.html#refunds); change both together. -->
+    <p class="updated">Last updated: 25 November 2026</p>
+
+    <div class="summary">
+      <p><strong>The short version.</strong> If Repeit isn’t right for you, you can have a full refund within 14 days of buying, for any reason.</p>
+    </div>
+
+    <h2 id="policy">14-day refund</h2>
+    <p>You can ask for a full refund within 14 days of buying a Yearly or Pay once licence, for any reason. You don’t have to explain why.</p>
+
+    <h2 id="how">How to ask</h2>
+    <ul>
+      <li>Email <a href="mailto:support@repeit.com">support@repeit.com</a>, or</li>
+      <li>use the link in your Paddle receipt.</li>
+    </ul>
+    <p>Licences are sold by our reseller, Paddle.com, the merchant of record, so the refund comes from Paddle to the way you paid.</p>
+
+    <h2 id="rights">Your other rights</h2>
+    <p>This doesn’t affect your other legal rights as a consumer. The full <a href="terms.html#buying">terms</a> say more about buying a licence.</p>
+  </div>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Repeit. © 2026 Design Definition Limited, company 15183622, registered in England and Wales.</span>
+    <nav><a href="/">Home</a><a href="features.html">Features</a><a href="buy.html">Pricing</a><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a><a href="refund.html">Refunds</a><a href="#" data-cookie-settings>Cookie settings</a></nav>
+  </div>
+</footer>
+<script src="assets/consent.js"></script>
+</body>
+</html>
